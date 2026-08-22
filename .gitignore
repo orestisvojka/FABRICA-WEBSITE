@@ -1,3 +1,13 @@
+# Secrets — never commit API keys or credentials
+.env
+.env.*
+
+# Local SQL database (holds the Gemini key + password hashes; schema.sql IS committed)
+database/*.db
+database/*.db-shm
+database/*.db-wal
+database/*.db-journal
+
 # Logs
 logs
 *.log
