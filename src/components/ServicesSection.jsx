@@ -1,0 +1,277 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence, useInView, animate, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+
+// High-Performance Dynamic Ticker Component for Numbers
+function AnimatedNumber({ value, suffix = '', duration = 2.0 }) {
+  const nodeRef = useRef(null);
+  const isInView = useInView(nodeRef, { once: true, margin: '-20px 0px' });
+  const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!isInView) return;
+    
+    if (shouldReduceMotion) {
+      if (nodeRef.current) {
+        nodeRef.current.textContent = `${value}${suffix}`;
+      }
+      return;
+    }
+
+    const node = nodeRef.current;
+    if (!node) return;
+
+    const controls = animate(0, value, {
+      duration: duration,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate(latest) {
+        node.textContent = `${Math.round(latest)}${suffix}`;
+      }
+    });
+
+    return () => controls.stop();
+  }, [isInView, value, suffix, duration, shouldReduceMotion]);
+
+  return <span ref={nodeRef}>0{suffix}</span>;
+}
+
+const servicesData = [
+  {
+    id: '001',
+    index: '(001)',
+    title: 'Web development & modernization',
+    description: 'Corporate websites, e-commerce, customer portals, dashboards, and custom web applications built for performance.',
+    image: '/service-1.png',
+    categories: ['Corporate websites', 'Landing pages', 'E-commerce', 'Portals & Dashboards', 'API integrations', 'Redesigns'],
+    count: 6
+  },
+  {
+    id: '002',
+    index: '(002)',
+    title: 'AI & AI Agents technology',
+    description: 'AI customer assistants, lead qualification agents, code generation tools, internal knowledge assistants, and automated workflows.',
+    image: '/service-2.png',
+    categories: ['AI Chatbots', 'Sales Assistants', 'Lead Qualification', 'Knowledge Tools', 'Code Generation', 'Automated QA'],
+    count: 6
+  },
+  {
+    id: '003',
+    index: '(003)',
+    title: 'Mobile app development',
+    description: 'Full product lifecycle for iOS, Android, and cross-platform apps for businesses, marketplaces, and enterprise platforms.',
+    image: '/service-3.png',
+    categories: ['iOS & Android', 'Cross-platform', 'Marketplaces', 'Booking apps', 'Auth & Payments', 'Analytics'],
+    count: 6
+  },
+  {
+    id: '004',
+    index: '(004)',
+    title: 'Digital marketing & SMMA',
+    description: 'Paid advertising, social media management, content strategy, and conversion optimization that turn traffic into business growth.',
+    image: '/service-4.png',
+    categories: ['Paid Advertising', 'Social Media', 'Lead Generation', 'Conversion UX', 'Campaign Strategy'],
+    count: 5
+  }
+];
+
+export default function ServicesSection() {
+  const navigate = useNavigate();
+  const [openIndex, setOpenIndex] = useState(0); // 001 open by default
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.15, margin: "-80px 0px" });
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const cardScale = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [0.97, 1, 1, 0.97]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.08
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.75,
+        ease: [0.25, 1, 0.5, 1]
+      }
+    }
+  };
+
+  const imageZoomVariants = {
+    rest: { scale: 1 },
+    hover: {
+      scale: 1.05,
+      transition: { duration: 0.45, ease: [0.25, 1, 0.5, 1] }
+    }
+  };
+
+  const pillHoverVariants = {
+    rest: { scale: 1, backgroundColor: "rgba(255, 255, 255, 0.06)", color: "rgba(255, 255, 255, 0.85)" },
+    hover: {
+      scale: 1.03,
+      backgroundColor: "#ffffff",
+      color: "#0a0a0a",
+      transition: { duration: 0.2, ease: "easeOut" }
+    }
+  };
+
+  return (
+    <div className="services-outer-wrapper" ref={sectionRef}>
+      <motion.section 
+        className="services-island-card"
+        style={{ scale: cardScale }}
+      >
+        {/* Kinetic Atmospheric Background Texture */}
+        <img 
+          src="/hero-texture.png" 
+          alt="Dark atmospheric background" 
+          className="services-texture-bg"
+        />
+
+        <div className="container">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="services-wrapper"
+          >
+            {/* Top Header Block */}
+            <div className="services-header-grid">
+              <motion.div variants={itemVariants} className="services-badge-pill">
+                <span className="services-badge-plus">+</span>
+                <span className="services-badge-text">What we do</span>
+              </motion.div>
+
+              <motion.div variants={itemVariants} className="services-headline-box">
+                <h2 className="services-headline">
+                  Services.<sup>(<AnimatedNumber value={4} />)</sup>
+                </h2>
+              </motion.div>
+            </div>
+
+            {/* Stacked Full-Width Accordion Rows */}
+            <div className="services-accordion-list">
+              {servicesData.map((service, idx) => {
+                const isOpen = openIndex === idx;
+
+                return (
+                  <div
+                    key={service.id}
+                    className={`services-row-item ${isOpen ? 'is-open' : ''}`}
+                    onClick={() => setOpenIndex(isOpen ? null : idx)}
+                  >
+                    {/* Row Outer Header (Always Displays Index + Title + Plus Icon consistently) */}
+                    <div className="services-row-header">
+                      <span className="services-row-index">{service.index}</span>
+
+                      <div className="services-row-title-wrap">
+                        <h3 className="services-title-text">{service.title}</h3>
+                      </div>
+
+                      <div className="services-icon-wrapper">
+                        <motion.span
+                          className="services-plus-icon"
+                          animate={{ rotate: isOpen ? 45 : 0 }}
+                          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                        >
+                          +
+                        </motion.span>
+                      </div>
+                    </div>
+
+                    {/* Smooth Ultra-Fluid Accordion Expansion */}
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          key="content"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                          className="services-expanded-content"
+                        >
+                          <div className="services-expanded-grid">
+                            {/* Left Block: Image Thumbnail & Description */}
+                            <div className="services-main-block">
+                              <motion.div 
+                                className="services-image-box"
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                              >
+                                <motion.img 
+                                  src={service.image} 
+                                  alt={service.title}
+                                  className="services-thumb-img"
+                                  variants={imageZoomVariants}
+                                />
+                              </motion.div>
+
+                              <div className="services-text-box">
+                                <p className="services-expanded-desc">{service.description}</p>
+                              </div>
+                            </div>
+
+                            {/* Right Block: Pill-Shaped Category Tags */}
+                            <div className="services-categories-block">
+                              <span className="services-cat-label">Categories</span>
+                              <div className="services-pills-wrap">
+                                {service.categories.map((cat, cIdx) => (
+                                  <motion.span
+                                    key={cIdx}
+                                    className="services-category-pill"
+                                    variants={pillHoverVariants}
+                                    initial="rest"
+                                    whileHover="hover"
+                                    animate="rest"
+                                  >
+                                    {cat}
+                                  </motion.span>
+                                ))}
+                                
+                                {/* Counter Pill Tag */}
+                                <motion.span 
+                                  className="services-category-pill pill-counter"
+                                  variants={pillHoverVariants}
+                                  initial="rest"
+                                  whileHover="hover"
+                                  animate="rest"
+                                >
+                                  <AnimatedNumber value={service.count} suffix="+" />
+                                </motion.span>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Bottom Call-To-Action Pill Button */}
+            <motion.div variants={itemVariants} className="services-footer-cta">
+              <button className="services-cta-btn" onClick={() => navigate('/contact')}>
+                Get started
+              </button>
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.section>
+    </div>
+  );
+}

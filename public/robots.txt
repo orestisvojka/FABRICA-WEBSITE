@@ -1,0 +1,48 @@
+# ==========================================================================
+# ROBOTS.TXT — QUOLYTECH® STUDIO (CREATE. HELP. GROW.)
+# Optimizing Search Engine & Generative AI Crawler Discovery
+# ==========================================================================
+
+# Standard Web Search Engine Crawlers
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+
+# Generative AI & LLM Indexing Crawlers (ChatGPT, Claude, Gemini, Perplexity)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap Location
+Sitemap: https://quolytech.com/sitemap.xml

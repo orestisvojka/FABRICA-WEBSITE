@@ -1,81 +1,241 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Check } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
+  const navigate = useNavigate();
+  const footerRef = useRef(null);
+
+  // Newsletter Form State
+  const [newsName, setNewsName] = useState('');
+  const [newsEmail, setNewsEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  const isInView = useInView(footerRef, { once: true, amount: 0.1, margin: "-50px 0px" });
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-    if (email.trim()) {
-      setSubscribed(true);
-      setTimeout(() => setSubscribed(false), 4000);
-      setEmail('');
+    if (!newsName.trim() || !newsEmail.trim()) return;
+
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubscribed(true);
+    }, 1000);
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.05
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.25, 1, 0.5, 1]
+      }
     }
   };
 
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer-main">
-          <div>
-            <h2 className="footer-heading">Let's craft your next digital breakthrough.</h2>
-            <p style={{ fontSize: '16px', color: '#555', marginBottom: '24px' }}>
-              Subscribe to our monthly studio journal for insights on web performance, brand strategy, and design systems.
-            </p>
-            <form onSubmit={handleSubscribe} className="footer-newsletter">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="footer-input"
-              />
-              <button type="submit" className="btn-primary btn-dark" style={{ padding: '14px 24px' }}>
-                {subscribed ? (
-                  <>
-                    Subscribed <Check size={18} color="#10b981" />
-                  </>
+    <footer className="footer-replica" ref={footerRef}>
+      <div className="footer-main-container">
+        <motion.div
+          className="footer-content-wrap"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {/* Top Row: Mission Statement & Newsletter Form */}
+          <div className="footer-top-grid">
+            {/* Left: Statement & Manager Stamp */}
+            <motion.div variants={itemVariants} className="footer-statement-col">
+              <p className="footer-statement-text">
+                Whether you're looking to build a stunning website, boost your brand, or drive measurable results,{' '}
+                <strong className="footer-bold-text">we're here to help.</strong>
+              </p>
+
+              {/* Client Success Manager Stamp */}
+              <div className="footer-manager-stamp">
+                <div className="footer-manager-avatar">
+                  <img src="/team-michael.png" alt="George Stern" />
+                </div>
+                <div className="footer-manager-info">
+                  <span className="footer-manager-name">George Stern</span>
+                  <span className="footer-manager-role">Client Success Manager</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right: Newsletter Form */}
+            <motion.div variants={itemVariants} className="footer-newsletter-col">
+              <h3 className="footer-newsletter-title">Newsletter</h3>
+
+              <AnimatePresence mode="wait">
+                {!isSubscribed ? (
+                  <motion.form
+                    key="news-form"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onSubmit={handleSubscribe}
+                    className="footer-newsletter-form"
+                  >
+                    <div className="footer-input-group">
+                      <label className="footer-input-label">Your name *</label>
+                      <input
+                        type="text"
+                        value={newsName}
+                        onChange={(e) => setNewsName(e.target.value)}
+                        placeholder="John Doe"
+                        className="footer-line-input"
+                        required
+                      />
+                    </div>
+
+                    <div className="footer-input-group">
+                      <label className="footer-input-label">Email *</label>
+                      <input
+                        type="email"
+                        value={newsEmail}
+                        onChange={(e) => setNewsEmail(e.target.value)}
+                        placeholder="hello@site.com"
+                        className="footer-line-input"
+                        required
+                      />
+                    </div>
+
+                    <motion.button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="footer-subscribe-btn"
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.96 }}
+                      transition={{ type: "spring", stiffness: 350, damping: 20 }}
+                    >
+                      {isSubmitting ? (
+                        <span>Subscribing...</span>
+                      ) : (
+                        <>
+                          <span>Subscribe</span>
+                          <span className="footer-sub-dot"></span>
+                        </>
+                      )}
+                    </motion.button>
+                  </motion.form>
                 ) : (
-                  <>
-                    Join <ArrowRight size={18} />
-                  </>
+                  <motion.div
+                    key="news-success"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="footer-news-success"
+                  >
+                    <div className="footer-news-success-badge">✓</div>
+                    <p className="footer-news-success-text">
+                      Subscribed! Thank you for joining our newsletter, <strong>{newsName}</strong>.
+                    </p>
+                  </motion.div>
                 )}
-              </button>
-            </form>
+              </AnimatePresence>
+
+              <p className="footer-newsletter-subtext">
+                Join our newsletter and stay updated on the latest trends in digital design.
+              </p>
+            </motion.div>
           </div>
 
-          <div>
-            <h4 className="footer-col-title">Navigation</h4>
-            <div className="footer-col-links">
-              <Link to="/">Home</Link>
-              <Link to="/studio">Studio</Link>
-              <Link to="/projects">Projects (27)</Link>
-              <Link to="/blog">Blog & Journal</Link>
-              <Link to="/contact">Contact Us</Link>
+          {/* Middle Row: Crosshairs, Direct Contact & Links Grid */}
+          <div className="footer-middle-grid">
+            <div className="footer-crosshairs-row">
+              <span className="footer-crosshair">+</span>
+              <span className="footer-crosshair">+</span>
+              <span className="footer-crosshair">+</span>
+            </div>
+
+            <div className="footer-links-layout">
+              {/* Direct Contact Column */}
+              <motion.div variants={itemVariants} className="footer-contact-col">
+                <span className="footer-phone-number">(123) 555-2468</span>
+                <motion.a
+                  href="mailto:hello@quolytech.com"
+                  className="footer-email-link"
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <span className="footer-email-dot">●</span>
+                  <span className="footer-email-text">hello@quolytech.com</span>
+                </motion.a>
+              </motion.div>
+
+              {/* Navigation Column */}
+              <motion.div variants={itemVariants} className="footer-nav-col">
+                <h4 className="footer-col-heading">Navigation</h4>
+                <ul className="footer-link-list">
+                  <li><Link to="/">Home</Link></li>
+                  <li><Link to="/studio">Studio</Link></li>
+                  <li><Link to="/projects">Projects</Link></li>
+                  <li><Link to="/blog">Blog</Link></li>
+                </ul>
+              </motion.div>
+
+              {/* Social Column */}
+              <motion.div variants={itemVariants} className="footer-social-col">
+                <h4 className="footer-col-heading">Social</h4>
+                <ul className="footer-link-list">
+                  <li>
+                    <a href="https://twitter.com" target="_blank" rel="noreferrer">
+                      Twitter <span>↗</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://instagram.com" target="_blank" rel="noreferrer">
+                      Instagram <span>↗</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://dribbble.com" target="_blank" rel="noreferrer">
+                      Dribbble <span>↗</span>
+                    </a>
+                  </li>
+                </ul>
+              </motion.div>
             </div>
           </div>
 
-          <div>
-            <h4 className="footer-col-title">Connect</h4>
-            <div className="footer-col-links">
-              <a href="https://twitter.com" target="_blank" rel="noreferrer">Twitter / X</a>
-              <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
-              <a href="https://dribbble.com" target="_blank" rel="noreferrer">Dribbble</a>
-              <a href="mailto:hello@fabrica.com">hello@fabrica.com</a>
-              <a href="tel:+14155550199">+1 (415) 555-0199</a>
-            </div>
-          </div>
-        </div>
+          {/* Giant Brand Lockup */}
+          <motion.div variants={itemVariants} className="footer-brand-lockup">
+            <h1 className="footer-giant-title">QuolyTech®</h1>
+            <span className="footer-giant-subtitle">Studio</span>
+          </motion.div>
+        </motion.div>
+      </div>
 
-        <div className="footer-bottom">
-          <div>© {new Date().getFullYear()} fabrica® Studio. All rights reserved.</div>
-          <div style={{ display: 'flex', gap: '24px' }}>
-            <Link to="/terms">Terms of Service</Link>
+      {/* Dark Architectural Bottom Copyright Bar */}
+      <div className="footer-dark-bar">
+        <div className="footer-dark-container">
+          <div className="footer-dark-left">
+            © 2026 QuolyTech® Studio. All rights reserved.
+          </div>
+
+          <div className="footer-dark-center">
             <Link to="/privacy">Privacy Policy</Link>
+            <span className="footer-bar-sep">•</span>
+            <Link to="/terms">Terms of Service</Link>
           </div>
+
+          <div className="footer-dark-right"></div>
         </div>
       </div>
     </footer>

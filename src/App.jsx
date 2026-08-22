@@ -1,8 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import FloatingAvatar from './components/FloatingAvatar';
+import QuolyBotGadget from './components/QuolyBotGadget';
+import QuolyTechPreloader from './components/QuolyTechPreloader';
+import AuthModal from './components/AuthModal';
+import ScrollToTop from './components/ScrollToTop';
 
 import Home from './pages/Home';
 import Studio from './pages/Studio';
@@ -13,39 +18,72 @@ import BlogPostDetail from './pages/BlogPostDetail';
 import Contact from './pages/Contact';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
+import TeamDetail from './pages/TeamDetail';
+import NotFound from './pages/NotFound';
+import ServerError from './pages/ServerError';
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
+function AppContent() {
+  const location = useLocation();
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [location.pathname]);
 
-  return null;
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative' }}>
+      <QuolyTechPreloader pathname={location.pathname} />
+      <Header onOpenAuth={() => setIsAuthOpen(true)} />
+      <main style={{ flex: 1 }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/studio" element={<Studio />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:slug" element={<ProjectDetail />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPostDetail />} />
+          <Route path="/team/:slug" element={<TeamDetail />} />
+          <Route path="/staff/:slug" element={<TeamDetail />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/500" element={<ServerError />} />
+          <Route path="/505" element={<ServerError />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+      <QuolyBotGadget />
+      <ScrollToTop />
+      <Footer />
+      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
+    </div>
+  );
 }
 
 export default function App() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.5,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <Router>
-      <ScrollToTop />
-      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative' }}>
-        <Header />
-        <main style={{ flex: 1 }}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/studio" element={<Studio />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/:slug" element={<ProjectDetail />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPostDetail />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/privacy" element={<Privacy />} />
-          </Routes>
-        </main>
-        <FloatingAvatar />
-        <Footer />
-      </div>
+      <AppContent />
     </Router>
   );
 }

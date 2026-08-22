@@ -1,106 +1,226 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { blogPosts } from '../data/blog';
-import { ArrowRight, Clock } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function Blog() {
   const navigate = useNavigate();
 
+  const featuredPost = blogPosts[0];
+  const topRightPosts = blogPosts.slice(1, 3);
+  const bottomPosts = blogPosts.slice(3, 7);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.05
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 35 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.25, 1, 0.5, 1]
+      }
+    }
+  };
+
   return (
-    <section className="section-dark" style={{ paddingTop: '180px', minHeight: '85vh' }}>
-      <div className="container">
-        <div style={{ marginBottom: '60px' }}>
-          <span style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#888' }}>
-            Journal & Perspectives
-          </span>
-          <h1 style={{ fontSize: 'clamp(48px, 7vw, 96px)', fontWeight: '800', marginTop: '12px' }}>
-            Studio Blog
-          </h1>
-          <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.7)', marginTop: '16px', maxWidth: '600px' }}>
-            Thoughts on digital strategy, performance engineering, dark mode aesthetics, and modern web design trends.
-          </p>
-        </div>
-
-        {/* Featured First Post */}
-        {blogPosts.length > 0 && (
-          <div 
-            onClick={() => navigate(`/blog/${blogPosts[0].slug}`)}
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '40px',
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              borderRadius: '24px',
-              padding: '32px',
-              marginBottom: '60px',
-              cursor: 'pointer'
-            }}
+    <div className="blog-page-outer">
+      <div className="blog-container">
+        {/* Header Section */}
+        <section className="blog-hero-section">
+          <motion.h1
+            className="blog-main-title"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.05 }}
+            transition={{ duration: 0.75, ease: [0.25, 1, 0.5, 1] }}
           >
-            <img 
-              src={blogPosts[0].coverImage} 
-              alt={blogPosts[0].title}
-              style={{ width: '100%', aspectRatio: '16/10', borderRadius: '16px', objectFit: 'cover' }}
-            />
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center', fontSize: '13px', color: '#888', marginBottom: '12px' }}>
-                <span style={{ background: 'rgba(255,255,255,0.1)', padding: '4px 10px', borderRadius: '12px', color: '#fff' }}>
-                  {blogPosts[0].category}
-                </span>
-                <span>{blogPosts[0].date}</span>
-                <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Clock size={14} /> {blogPosts[0].readTime}</span>
-              </div>
-              <h2 style={{ fontSize: 'clamp(24px, 3.5vw, 36px)', fontWeight: '800', lineHeight: '1.2' }}>
-                {blogPosts[0].title}
-              </h2>
-              <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.7)', margin: '16px 0 24px', lineHeight: '1.6' }}>
-                {blogPosts[0].excerpt}
-              </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '700', fontSize: '15px' }}>
-                Read Full Article <ArrowRight size={16} />
-              </div>
-            </div>
-          </div>
-        )}
+            Expert Insights.
+          </motion.h1>
 
-        {/* Grid of Remaining Posts */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '32px' }}>
-          {blogPosts.slice(1).map((post) => (
-            <div
-              key={post.id}
-              onClick={() => navigate(`/blog/${post.slug}`)}
-              style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.08)',
-                borderRadius: '20px',
-                padding: '24px',
-                cursor: 'pointer',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px'
-              }}
-            >
-              <img 
-                src={post.coverImage} 
-                alt={post.title}
-                style={{ width: '100%', aspectRatio: '16/10', borderRadius: '12px', objectFit: 'cover' }}
-              />
-              <div style={{ display: 'flex', gap: '12px', fontSize: '12px', color: '#888' }}>
-                <span style={{ background: 'rgba(255,255,255,0.1)', padding: '2px 8px', borderRadius: '10px', color: '#fff' }}>
-                  {post.category}
-                </span>
-                <span>{post.date}</span>
+          <motion.div
+            className="blog-header-subgrid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
+          >
+            <motion.div variants={itemVariants} className="blog-badge-col">
+              <div className="blog-badge-row">
+                <span className="blog-badge-dot">●</span>
+                <span className="blog-badge-label">Blog</span>
               </div>
-              <h3 style={{ fontSize: '20px', fontWeight: '700', lineHeight: '1.3' }}>
-                {post.title}
-              </h3>
-              <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', lineHeight: '1.5' }}>
-                {post.excerpt}
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="blog-center-text-col">
+              <p className="blog-header-center-text">
+                Expert insights on web design, branding, and digital strategy to help your business stand out.
               </p>
-            </div>
-          ))}
-        </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="blog-right-text-col">
+              <p className="blog-header-right-text">
+                From design principles to technical optimization — everything you need for digital success.
+              </p>
+            </motion.div>
+          </motion.div>
+
+          {/* Asymmetrical Insights Grid */}
+          <div className="blog-insights-grid-wrapper">
+            {/* Top Row: Featured 2-col card + 2 stacked 1-col cards */}
+            <motion.div
+              className="blog-top-asym-grid"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.05 }}
+            >
+              {/* Featured Card (Left) */}
+              {featuredPost && (
+                <motion.div
+                  variants={itemVariants}
+                  className="blog-featured-card"
+                  onClick={() => {
+                    navigate(`/blog/${featuredPost.slug}`);
+                    window.scrollTo(0, 0);
+                  }}
+                  whileHover="hover"
+                >
+                  <div className="blog-featured-img-wrapper">
+                    <motion.img
+                      src={featuredPost.coverImage}
+                      alt={featuredPost.title}
+                      className="blog-featured-img"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        if (featuredPost.fallbackImage) {
+                          e.target.src = featuredPost.fallbackImage;
+                        }
+                      }}
+                      variants={{
+                        initial: { scale: 1 },
+                        hover: { scale: 1.05 }
+                      }}
+                      transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+                    />
+                    <div className="blog-featured-gradient-overlay" />
+
+                    <div className="blog-card-arrow-badge">
+                      <ArrowUpRight size={14} />
+                    </div>
+
+                    <div className="blog-featured-content">
+                      <span className="blog-card-date">{featuredPost.date}</span>
+                      <h2 className="blog-featured-title">{featuredPost.title}</h2>
+                      <p className="blog-featured-excerpt">{featuredPost.excerpt}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* 2 Stacked Cards (Right) */}
+              <div className="blog-top-right-col">
+                {topRightPosts.map((post) => (
+                  <motion.div
+                    key={post.id}
+                    variants={itemVariants}
+                    className="blog-standard-card"
+                    onClick={() => {
+                      navigate(`/blog/${post.slug}`);
+                      window.scrollTo(0, 0);
+                    }}
+                    whileHover="hover"
+                  >
+                    <div className="blog-card-top-row">
+                      <div className="blog-card-thumb-wrapper">
+                        <img
+                          src={post.coverImage}
+                          alt={post.title}
+                          className="blog-card-thumb-img"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            if (post.fallbackImage) {
+                              e.target.src = post.fallbackImage;
+                            }
+                          }}
+                        />
+                      </div>
+                      <div className="blog-card-arrow-badge">
+                        <ArrowUpRight size={14} />
+                      </div>
+                    </div>
+
+                    <div className="blog-card-body">
+                      <span className="blog-card-date">{post.date}</span>
+                      <h3 className="blog-card-title">{post.title}</h3>
+                      <p className="blog-card-excerpt">{post.excerpt}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Bottom Row: 4 Equal Columns */}
+            <motion.div
+              className="blog-bottom-4col-grid"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.05 }}
+            >
+              {bottomPosts.map((post) => (
+                <motion.div
+                  key={post.id}
+                  variants={itemVariants}
+                  className="blog-standard-card"
+                  onClick={() => {
+                    navigate(`/blog/${post.slug}`);
+                    window.scrollTo(0, 0);
+                  }}
+                  whileHover="hover"
+                >
+                  <div className="blog-card-top-row">
+                    <div className="blog-card-thumb-wrapper">
+                      <img
+                        src={post.coverImage}
+                        alt={post.title}
+                        className="blog-card-thumb-img"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          if (post.fallbackImage) {
+                            e.target.src = post.fallbackImage;
+                          }
+                        }}
+                      />
+                    </div>
+                    <div className="blog-card-arrow-badge">
+                      <ArrowUpRight size={14} />
+                    </div>
+                  </div>
+
+                  <div className="blog-card-body">
+                    <span className="blog-card-date">{post.date}</span>
+                    <h3 className="blog-card-title">{post.title}</h3>
+                    <p className="blog-card-excerpt">{post.excerpt}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
       </div>
-    </section>
+      {/* Note: Global <Footer /> is rendered directly after this div by App.jsx */}
+    </div>
   );
 }

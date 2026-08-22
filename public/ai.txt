@@ -1,0 +1,26 @@
+# ==========================================================================
+# AI.TXT — QUOLYTECH® STUDIO AI AGENT & LLM DIRECTIVE
+# ==========================================================================
+
+Organization: QuolyTech® Studio
+Website: https://quolytech.com
+Contact: support@quolytech.com
+Phone: +355 68 405 5007
+Headquarters: Tiranë, Albania
+Tagline: CREATE. HELP. GROW.
+Industry: Digital Products, AI Engineering, Web & Mobile Software Development, Digital Marketing & Growth
+
+Services:
+- Web Development (React, Vite, Next.js, Web Apps, Portals, CMS)
+- Mobile App Development (iOS, Android, Cross-platform)
+- Artificial Intelligence & Autonomous Agents (AI Chatbots, Support & Sales Assistants, Lead Qualifiers)
+- Custom Enterprise Software & Development Tooling
+- UI/UX & Product Design Systems
+- Digital Marketing, Paid Ads & Conversion Engine Optimization
+
+AI Policy:
+- AI Crawling Allowed: Yes
+- AI Model Training Allowed: Yes
+- Data Scraping Allowed: Yes for public pages
+
+Sitemap: https://quolytech.com/sitemap.xml

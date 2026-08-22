@@ -1,7 +1,7 @@
 export const testimonials = [
   {
     id: "boltshift-quote",
-    quote: "Fabrica Studio completely overhauled our brand and web application. Their attention to design details, performance speed, and typography surpassed every expectation. Conversion rate jumped by 140% post-launch.",
+    quote: "QuolyTech Studio completely overhauled our brand and web application. Their attention to design details, performance speed, and typography surpassed every expectation. Conversion rate jumped by 140% post-launch.",
     author: "George Stern",
     role: "VP of Product",
     company: "Boltshift Inc.",
@@ -9,7 +9,7 @@ export const testimonials = [
   },
   {
     id: "ephemeral-quote",
-    quote: "Working with Fabrica felt like working with a high-end architectural firm for the web. Their dark-mode visual system gave us immediate credibility with tier-1 venture investors.",
+    quote: "Working with QuolyTech felt like working with a high-end architectural firm for the web. Their dark-mode visual system gave us immediate credibility with tier-1 venture investors.",
     author: "Elena Rostova",
     role: "Co-Founder & CEO",
     company: "Ephemeral Labs",
@@ -17,7 +17,7 @@ export const testimonials = [
   },
   {
     id: "powersurge-quote",
-    quote: "The speed and polish of Fabrica's web apps are unmatched. They delivered a complex real-time dashboard 2 weeks ahead of our series B announcement schedule.",
+    quote: "The speed and polish of QuolyTech's web apps are unmatched. They delivered a complex real-time dashboard 2 weeks ahead of our series B announcement schedule.",
     author: "Marcus Vance",
     role: "Head of Technology",
     company: "Powersurge Energy",
@@ -40,7 +40,7 @@ export const faqs = [
   },
   {
     question: "What technology stack do you use?",
-    answer: "We build using React, Vite, Webflow, Framer, CSS modules, and custom WebGL shaders, ensuring lightning-fast load times and seamless responsiveness across all screen sizes."
+    answer: "We build using React, Vite, modern CSS modules, and custom WebGL shaders, ensuring lightning-fast load times and seamless responsiveness across all screen sizes."
   },
   {
     question: "How do we get started on a project?",

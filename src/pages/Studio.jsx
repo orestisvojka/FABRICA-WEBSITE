@@ -1,202 +1,494 @@
-import React from 'react';
-import { teamMembers } from '../data/team';
-import { services } from '../data/services';
-import { ArrowRight, Check } from 'lucide-react';
+import React, { useRef, useEffect } from 'react';
+import { motion, useInView, animate } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import ContactSection from '../components/ContactSection';
+
+// Dynamic DOM Patching Number Ticker Counter Component with Fallback Safety
+function AnimatedMetric({ targetValue, suffix = '', prefix = '' }) {
+  const nodeRef = useRef(null);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.1 });
+
+  useEffect(() => {
+    const node = nodeRef.current;
+    if (!node) return;
+
+    if (!isInView) {
+      node.textContent = `${prefix}${targetValue}${suffix}`;
+      return;
+    }
+
+    const controls = animate(0, targetValue, {
+      duration: 1.6,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate(latest) {
+        node.textContent = `${prefix}${Math.round(latest)}${suffix}`;
+      }
+    });
+
+    return () => controls.stop();
+  }, [isInView, targetValue, prefix, suffix]);
+
+  return (
+    <span ref={containerRef} className="studio-metric-num">
+      <span ref={nodeRef}>{prefix}{targetValue}{suffix}</span>
+    </span>
+  );
+}
 
 export default function Studio() {
   const navigate = useNavigate();
 
-  const clients = [
-    "Boltshift Inc.", "Ephemeral Labs", "Powersurge Energy",
-    "Mastermail", "Warpspeed AI", "CloudWatch Systems",
-    "Apex Global", "Vanguard Web3", "Hyperion Analytics"
-  ];
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.05
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 35 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.25, 1, 0.5, 1]
+      }
+    }
+  };
 
   const awards = [
-    { year: "2025", title: "Site of the Day", org: "Awwwards", work: "Boltshift" },
-    { year: "2024", title: "Developer Award", org: "FWA", work: "Powersurge" },
-    { year: "2024", title: "Best UI/UX Design", org: "SiteInspire", work: "Ephemeral" },
-    { year: "2023", title: "Design Excellence", org: "Mindsparkle Mag", work: "Warpspeed" }
+    { id: '001', name: 'Best web design agency', nom: 'Web Excellence Awards', year: '2026' },
+    { id: '002', name: 'Top digital marketing firm', nom: 'Clutch Top Agencies', year: '2024' },
+    { id: '003', name: 'Best web design agency', nom: 'Awwwards Honorable Mention', year: '2024' },
+    { id: '004', name: 'Top UI/UX Innovation', nom: 'CSS Design Awards', year: '2023' }
+  ];
+
+  const clientLogos = [
+    { id: 1, name: 'LOOM', year: '/2026', slug: 'boltshift' },
+    { id: 2, name: 'LOQO', year: '/2026', slug: 'mastermail' },
+    { id: 3, name: 'APEX', year: '/2024', slug: 'ephemeral' },
+    { id: 4, name: 'POWERSURGE', year: '/2024', slug: 'powersurge' },
+    { id: 5, name: 'CLOUDWATCH', year: '/2023', slug: 'cloudwatch' },
+    { id: 6, name: 'LOGOIPSUM', year: '/2020', slug: 'warpspeed' }
   ];
 
   return (
-    <div>
-      {/* Studio Hero */}
-      <section className="section-dark" style={{ paddingTop: '180px', paddingBottom: '100px' }}>
-        <div className="container">
-          <span style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#888' }}>
-            About Fabrica Studio
-          </span>
-          <h1 style={{ fontSize: 'clamp(48px, 8vw, 110px)', fontWeight: '800', marginTop: '16px', lineHeight: '0.95', maxWidth: '1100px' }}>
-            A small team with big architectural ideas.
-          </h1>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '60px', marginTop: '80px' }}>
-            <div>
-              <h3 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '16px' }}>Our Philosophy</h3>
-              <p style={{ fontSize: '17px', color: 'rgba(255,255,255,0.7)', lineHeight: '1.6' }}>
-                We believe great websites are engineered at the intersection of precision typography, performance architecture, and purposeful visual identity. We don't build generic templates; we build digital growth engines.
+    <div className="studio-page-outer">
+      {/* SECTION 1: Studio Hero & Mission */}
+      <section className="studio-hero-section">
+        <div className="studio-container">
+          <motion.div
+            className="studio-hero-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
+          >
+            {/* Left Title */}
+            <motion.div variants={itemVariants} className="studio-hero-title-box">
+              <h1 className="studio-hero-main-title">Studio.</h1>
+            </motion.div>
+
+            {/* Right Mission & Review Lockup */}
+            <motion.div variants={itemVariants} className="studio-hero-text-box">
+              <div className="studio-badge-row">
+                <span className="studio-badge-dot">●</span>
+                <span className="studio-badge-label">About us</span>
+              </div>
+
+              <p className="studio-hero-mission-statement">
+                QuolyTech® is built around a simple promise: <strong>CREATE. HELP. GROW.</strong> We combine software development, UI/UX design, artificial intelligence, and digital marketing to build modern digital products that solve real problems and create sustainable growth.
               </p>
-            </div>
-            <div>
-              <h3 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '16px' }}>How We Work</h3>
-              <p style={{ fontSize: '17px', color: 'rgba(255,255,255,0.7)', lineHeight: '1.6' }}>
-                Direct access to senior founders. No account manager telephone games. Fast 48-hour iteration cycles and relentless focus on measurable conversion impact.
+
+              <p className="studio-hero-subcaption">
+                Digital Products • AI • Web • Mobile • Design • Growth (2026 Edition)
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Team Section */}
-      <section className="section-light">
-        <div className="container">
-          <div style={{ maxWidth: '640px', marginBottom: '60px' }}>
-            <span style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#666' }}>
-              Meet The Team
-            </span>
-            <h2 style={{ fontSize: 'clamp(32px, 5vw, 56px)', marginTop: '8px', color: '#000' }}>
-              Leadership behind every project.
-            </h2>
-          </div>
+              {/* Star Rating Badge */}
+              <div className="studio-review-stamp">
+                <div className="studio-stars">★★★★★</div>
+                <span className="studio-review-text"><strong>5.0</strong> rating · 500+ projects completed (99.9% satisfaction)</span>
+              </div>
+            </motion.div>
+          </motion.div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '40px' }}>
-            {teamMembers.map((member) => (
-              <div 
-                key={member.id}
-                style={{
-                  background: '#fff',
-                  borderRadius: '24px',
-                  padding: '32px',
-                  border: '1px solid rgba(0,0,0,0.08)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '20px'
+          {/* Full-width Wide Landscape Hero Image Card */}
+          <motion.div
+            className="studio-hero-img-card"
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.05 }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+            whileHover="hover"
+          >
+            <div className="studio-hero-img-wrapper">
+              <motion.img
+                src="/studio-hero-laptop.png"
+                alt="QuolyTech Studio Team at Work"
+                className="studio-hero-img"
+                variants={{
+                  initial: { scale: 1 },
+                  hover: { scale: 1.06 }
                 }}
-              >
-                <img 
-                  src={member.avatar} 
-                  alt={member.name}
-                  style={{ width: '100%', aspectRatio: '1/1', borderRadius: '16px', objectFit: 'cover' }}
-                />
-                <div>
-                  <h3 style={{ fontSize: '24px', fontWeight: '700', color: '#000' }}>{member.name}</h3>
-                  <span style={{ fontSize: '14px', fontWeight: '600', color: '#666' }}>{member.role} {member.company}</span>
-                  <p style={{ fontSize: '15px', color: '#555', marginTop: '12px', lineHeight: '1.5' }}>
-                    {member.bio}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+                transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+              />
+              <div className="studio-hero-img-gradient" />
+            </div>
+            <motion.span
+              className="studio-hero-brand-tag"
+              variants={{
+                initial: { y: 0, opacity: 0.9 },
+                hover: { y: -4, opacity: 1 }
+              }}
+            >
+              QuolyTech®
+            </motion.span>
+          </motion.div>
         </div>
       </section>
 
-      {/* Expanded Services Breakdown */}
-      <section className="section-dark" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-        <div className="container">
-          <div style={{ maxWidth: '640px', marginBottom: '60px' }}>
-            <span style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#888' }}>
-              Our Capabilities
-            </span>
-            <h2 style={{ fontSize: 'clamp(32px, 5vw, 56px)', marginTop: '8px' }}>
-              End-to-end digital services.
-            </h2>
-          </div>
+      {/* SECTION 2: Metrics, Animated Line Drawings & Client Bento Grid */}
+      <section className="studio-metrics-section">
+        <div className="studio-container">
+          {/* Top Line Drawing */}
+          <motion.div
+            className="studio-drawn-line"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, amount: 0.05 }}
+            transition={{ duration: 1.1, ease: [0.25, 1, 0.5, 1] }}
+          />
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px' }}>
-            {services.map((srv) => (
-              <div 
-                key={srv.id}
-                style={{
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  borderRadius: '20px',
-                  padding: '32px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '16px'
-                }}
+          {/* 4-Column Dynamic Metric Grid with Number Counting */}
+          <motion.div
+            className="studio-metrics-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
+          >
+            <motion.div variants={itemVariants} className="studio-metric-item">
+              <AnimatedMetric targetValue={3} suffix="m+" />
+              <span className="studio-metric-label">Ad impressions managed</span>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="studio-metric-item">
+              <AnimatedMetric targetValue={500} suffix="+" />
+              <span className="studio-metric-label">Projects completed</span>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="studio-metric-item">
+              <AnimatedMetric targetValue={99} suffix=".9%" />
+              <span className="studio-metric-label">Client satisfaction rate</span>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="studio-metric-item">
+              <AnimatedMetric targetValue={50} suffix="k+" />
+              <span className="studio-metric-label">Monthly visitors driven through SEO</span>
+            </motion.div>
+          </motion.div>
+
+          {/* Middle Line Drawing Animation */}
+          <motion.div
+            className="studio-drawn-line"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, amount: 0.05 }}
+            transition={{ duration: 1.1, ease: [0.25, 1, 0.5, 1] }}
+          />
+
+          {/* Approach Mission Statement Lockup */}
+          <motion.div
+            className="studio-approach-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
+          >
+            <motion.div variants={itemVariants} className="studio-approach-left">
+              <span className="studio-brand-watermark">QuolyTech®</span>
+              <p className="studio-approach-tagline">
+                CREATE. HELP. GROW. — One partner for your entire digital ecosystem.
+              </p>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="studio-approach-right">
+              <p className="studio-approach-main-text">
+                Our vision is to make technology simpler, faster, smarter, and more competitive: <strong>we combine Web Development, Mobile Apps, AI Agents, Custom Software, and Digital Marketing under one roof so businesses can avoid managing multiple disconnected suppliers.</strong>
+              </p>
+              <p className="studio-approach-sub-text">
+                From discovery to design, development, launch, and AI integration, our objective is to create one connected digital journey that builds measurable business value.
+              </p>
+
+              <motion.button
+                className="studio-portfolio-btn"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: "spring", stiffness: 350, damping: 20 }}
+                onClick={() => navigate('/projects')}
               >
-                <span style={{ fontSize: '14px', fontWeight: '700', color: '#888' }}>{srv.number}</span>
-                <h3 style={{ fontSize: '22px', fontWeight: '700' }}>{srv.title}</h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', lineHeight: '1.5' }}>
-                  {srv.subtitle}
-                </p>
-                <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-                  {srv.deliverables.map((item, idx) => (
-                    <div key={idx} style={{ fontSize: '13px', color: 'rgba(255,255,255,0.8)', margin: '6px 0', display: 'flex', gap: '6px' }}>
-                      <Check size={14} color="#10b981" /> {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+                <span>Portfolio</span>
+                <span className="studio-btn-dot"></span>
+              </motion.button>
+            </motion.div>
+          </motion.div>
 
-      {/* Clients & Industry Recognition */}
-      <section className="section-light">
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px' }}>
-            <div>
-              <span style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#666' }}>
-                Client Roster
-              </span>
-              <h2 style={{ fontSize: '36px', fontWeight: '800', marginTop: '8px', marginBottom: '32px', color: '#000' }}>
-                Trusted by high-growth startups & category leaders.
-              </h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
-                {clients.map((client, idx) => (
-                  <div key={idx} style={{ padding: '16px', background: '#fff', borderRadius: '12px', fontWeight: '600', fontSize: '15px', color: '#111', border: '1px solid rgba(0,0,0,0.06)' }}>
-                    {client}
-                  </div>
-                ))}
+          {/* Client Bento Grid (3x2 Grid) */}
+          <div className="studio-clients-block">
+            {/* Bento Grid Top Line Drawing */}
+            <motion.div
+              className="studio-drawn-line"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, amount: 0.05 }}
+              transition={{ duration: 1.1, ease: [0.25, 1, 0.5, 1] }}
+            />
+
+            <div className="studio-clients-header">
+              <div className="studio-badge-row">
+                <span className="studio-badge-dot">●</span>
+                <span className="studio-badge-label">Our clients</span>
               </div>
+              <span className="studio-year-stamp">(2016-25©)</span>
             </div>
 
-            <div>
-              <span style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#666' }}>
-                Industry Awards
-              </span>
-              <h2 style={{ fontSize: '36px', fontWeight: '800', marginTop: '8px', marginBottom: '32px', color: '#000' }}>
-                Recognized worldwide for digital design excellence.
-              </h2>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {awards.map((award, idx) => (
-                  <div 
-                    key={idx}
-                    style={{
-                      display: 'flex',
-                      justifySpace: 'between',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      padding: '20px',
-                      background: '#fff',
-                      borderRadius: '12px',
-                      border: '1px solid rgba(0,0,0,0.06)'
-                    }}
+            <motion.div
+              className="studio-bento-grid"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.05 }}
+            >
+              {clientLogos.map((logo) => (
+                <motion.div
+                  key={logo.id}
+                  variants={itemVariants}
+                  className="studio-bento-card studio-bento-card-interactive"
+                  onClick={() => {
+                    navigate(`/projects/${logo.slug}`);
+                    window.scrollTo(0, 0);
+                  }}
+                  style={{ cursor: 'pointer' }}
+                  whileHover={{
+                    y: -8,
+                    scale: 1.025,
+                    boxShadow: "0 20px 40px rgba(0, 0, 0, 0.08)"
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 22 }}
+                >
+                  <motion.div
+                    className="studio-logo-display"
+                    whileHover={{ scale: 1.06 }}
+                    transition={{ duration: 0.2 }}
                   >
-                    <div>
-                      <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#000' }}>{award.title}</h4>
-                      <span style={{ fontSize: '13px', color: '#666' }}>{award.org} — {award.work}</span>
-                    </div>
-                    <span style={{ fontSize: '14px', fontWeight: '600', color: '#888' }}>{award.year}</span>
+                    <span className="studio-logo-name">{logo.name}</span>
+                  </motion.div>
+                  <div className="studio-card-footer-row">
+                    <span className="studio-card-year">{logo.year}</span>
+                    <span className="studio-card-arrow">↗</span>
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div style={{ marginTop: '80px', textAlign: 'center' }}>
-            <button className="btn-primary btn-dark" onClick={() => navigate('/contact')}>
-              Start a Project With Us <ArrowRight size={18} />
-            </button>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
+
+      {/* SECTION 3: Awards Table & 50/50 Team Landscape Cards */}
+      <section className="studio-awards-section">
+        <div className="studio-container">
+          {/* Top Line Drawing */}
+          <motion.div
+            className="studio-drawn-line"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, amount: 0.05 }}
+            transition={{ duration: 1.1, ease: [0.25, 1, 0.5, 1] }}
+          />
+
+          {/* Header */}
+          <motion.div
+            className="studio-awards-header-block"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
+          >
+            <div className="studio-badge-row">
+              <span className="studio-badge-dot">●</span>
+              <span className="studio-badge-label">Our achievements</span>
+            </div>
+
+            <h2 className="studio-awards-title">
+              Awards.
+            </h2>
+            <span className="studio-year-stamp">(2016-25©)</span>
+          </motion.div>
+
+          {/* Tabular Accordion Awards List */}
+          <motion.div
+            className="studio-awards-table"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
+          >
+            <div className="studio-table-header-row">
+              <span>Award</span>
+              <span className="text-right">Nomination</span>
+              <span className="text-right">Year</span>
+            </div>
+
+            {awards.map((award) => (
+              <motion.div key={award.id} variants={itemVariants} className="studio-table-row-wrapper">
+                <motion.div
+                  className="studio-table-row"
+                  whileHover={{
+                    x: 6,
+                    backgroundColor: "rgba(0, 0, 0, 0.03)"
+                  }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <span className="studio-row-id">({award.id})</span>
+                  <span className="studio-row-title">
+                    <motion.svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className="studio-row-icon"
+                      whileHover={{ rotate: 180, scale: 1.2 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </motion.svg>
+                    {award.name}
+                  </span>
+                  <span className="studio-row-nom">{award.nom}</span>
+                  <span className="studio-row-year">{award.year}</span>
+                </motion.div>
+
+                {/* Animated Line Drawing under each Row */}
+                <motion.div
+                  className="studio-drawn-line-thin"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true, amount: 0.05 }}
+                  transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* 50/50 Spatial Split Landscape Team Cards */}
+          <div className="studio-team-split-grid">
+            {/* Team Card 1 */}
+            <motion.div
+              className="studio-landscape-card"
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.05 }}
+              transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+              whileHover="hover"
+            >
+              <div className="studio-landscape-img-wrapper">
+                <motion.img
+                  src="/studio-team-group.png"
+                  alt="Meet the team"
+                  className="studio-landscape-img"
+                  variants={{
+                    initial: { scale: 1 },
+                    hover: { scale: 1.06 }
+                  }}
+                  transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+                />
+              </div>
+              <motion.div
+                className="studio-landscape-footer"
+                variants={{
+                  initial: { y: 0 },
+                  hover: { y: -4 }
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                <span className="studio-landscape-title">Meet the team</span>
+                <span className="studio-landscape-year">/2024</span>
+              </motion.div>
+            </motion.div>
+
+            {/* Team Card 2 */}
+            <motion.div
+              className="studio-landscape-card"
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.05 }}
+              transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.1 }}
+              whileHover="hover"
+            >
+              <div className="studio-landscape-img-wrapper">
+                <motion.img
+                  src="/studio-team-collab.png"
+                  alt="How work gets done"
+                  className="studio-landscape-img"
+                  variants={{
+                    initial: { scale: 1 },
+                    hover: { scale: 1.06 }
+                  }}
+                  transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+                />
+              </div>
+              <motion.div
+                className="studio-landscape-footer"
+                variants={{
+                  initial: { y: 0 },
+                  hover: { y: -4 }
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                <span className="studio-landscape-title">How work gets done</span>
+                <span className="studio-landscape-year">/2026</span>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Bottom Philosophy Lockup */}
+          <motion.div
+            className="studio-philosophy-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
+          >
+            <motion.div variants={itemVariants} className="studio-phil-badge-col">
+              <div className="studio-badge-row">
+                <span className="studio-badge-dot">●</span>
+                <span className="studio-badge-label">What else?</span>
+              </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="studio-phil-text-col">
+              <p className="studio-phil-main-text">
+                We believe a successful digital product is more than an attractive interface—<strong>it should solve real business problems, automate repetitive work, provide a great user experience, and generate measurable revenue.</strong>
+              </p>
+              <p className="studio-phil-sub-text">
+                Whether you need a modern web application, custom AI tools, mobile platform, or lead-generation marketing strategy, QuolyTech provides technology built to scale with your business.
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Trailing Section: "Let's talk." Contact Section */}
+      <ContactSection />
     </div>
   );
 }
