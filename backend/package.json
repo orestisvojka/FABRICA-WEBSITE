@@ -1,0 +1,15 @@
+{
+  "name": "quolytech-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Auth backend for the QuolyTech website — plain Node + raw SQL (node:sqlite), no ORM",
+  "scripts": {
+    "start": "node server.mjs",
+    "import-media": "node import-media.mjs",
+    "seed-full": "node seed-full.mjs"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3"
+  }
+}
