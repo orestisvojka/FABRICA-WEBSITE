@@ -1,36 +1,28 @@
-# QuolyTech® Studio — Website + Backend + CMS
+# QuolyTech® Studio — Frontend Website
 
-**CREATE. HELP. GROW.** — The official web platform of QuolyTech® Studio
-(Tiranë, Albania): a React SPA agency website, a dependency-light Node.js
-API backend, a shared SQL database, and a companion admin dashboard (CMS).
+**CREATE. HELP. GROW.** — The official web platform of QuolyTech® Studio (Tiranë, Albania): React SPA agency website.
 
-| Part | Tech | Where | Port |
+| Repository | Description | Tech Stack | GitHub Remote |
 |---|---|---|---|
-| **Website (frontend)** | React 19 + Vite, vanilla CSS design system | `src/`, `public/` | 5173/5174 |
-| **Backend API** | Plain Node.js, raw SQL (`node:sqlite`), bcryptjs — no ORM, no framework | `backend/` | 4500 |
-| **Database** | SQLite (plain SQL schema) | `database/` | — |
-| **Admin dashboard (CMS)** | Next.js 15 + Tailwind + Prisma | sibling repo/folder `../quolytech-admin` | 4400 |
+| **Frontend Website** | Public Agency Website | React 19 + Vite, Vanilla CSS | `https://github.com/orestisvojka/FABRICA-WEBSITE.git` |
+| **Backend API** | Standalone API Service | Node.js, REST API, SQL | `https://github.com/orestisvojka/api-quolytech.git` |
+| **Admin Dashboard (CMS)** | Next.js Management CMS | Next.js 15, Tailwind, Prisma | `https://github.com/orestisvojka/dasboard-quolytech.git` |
 
 ## Quick start
 
 ```bash
-# 1. Website
+# Frontend Website
 npm install
-npm run dev                      # http://localhost:5173 (or 5174)
-
-# 2. Backend API (one-time: cd backend && npm install)
-node backend/server.mjs          # http://localhost:4500
-
-# 3. Admin dashboard (separate folder ../quolytech-admin)
-cd ../quolytech-admin && npm install && npm run setup && npm run dev   # http://localhost:4400
+npm run dev                      # http://localhost:5173
 ```
 
-Create a `.env` in the project root (it is git-ignored — never commit it):
+Create a `.env` in the project root:
 
+```env
+VITE_GEMINI_API_KEY=your-google-ai-key
+VITE_BACKEND_URL=http://localhost:4500
 ```
-VITE_GEMINI_API_KEY=your-google-ai-key     # used by seed-chatbot.mjs
-VITE_BACKEND_URL=http://localhost:4500     # where AuthModal sends logins
-```
+
 
 If `database/quolytech.db` is missing, the backend recreates it from
 [`database/schema.sql`](database/schema.sql) and seeds a default admin
