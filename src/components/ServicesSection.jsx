@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useInView, animate, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { Globe } from '@/components/ui/cobe-globe';
 
 // High-Performance Dynamic Ticker Component for Numbers
 function AnimatedNumber({ value, suffix = '', duration = 2.0 }) {
@@ -72,6 +73,25 @@ const servicesData = [
     categories: ['Paid Advertising', 'Social Media', 'Lead Generation', 'Conversion UX', 'Campaign Strategy'],
     count: 5
   }
+];
+
+const globalMarkers = [
+  { id: "sf", location: [37.7595, -122.4367], label: "San Francisco" },
+  { id: "nyc", location: [40.7128, -74.006], label: "New York" },
+  { id: "london", location: [51.5074, -0.1278], label: "London" },
+  { id: "zurich", location: [47.3769, 8.5417], label: "Zurich" },
+  { id: "dubai", location: [25.2048, 55.2708], label: "Dubai" },
+  { id: "tokyo", location: [35.6762, 139.6503], label: "Tokyo" },
+  { id: "singapore", location: [1.3521, 103.8198], label: "Singapore" },
+  { id: "sydney", location: [-33.8688, 151.2093], label: "Sydney" },
+];
+
+const globalArcs = [
+  { id: "sf-london", from: [37.7595, -122.4367], to: [51.5074, -0.1278], label: "SF → London" },
+  { id: "london-zurich", from: [51.5074, -0.1278], to: [47.3769, 8.5417], label: "London → Zurich" },
+  { id: "zurich-dubai", from: [47.3769, 8.5417], to: [25.2048, 55.2708], label: "Zurich → Dubai" },
+  { id: "dubai-tokyo", from: [25.2048, 55.2708], to: [35.6762, 139.6503], label: "Dubai → Tokyo" },
+  { id: "tokyo-singapore", from: [35.6762, 139.6503], to: [1.3521, 103.8198], label: "Tokyo → Singapore" },
 ];
 
 export default function ServicesSection() {
@@ -173,7 +193,7 @@ export default function ServicesSection() {
                     className={`services-row-item ${isOpen ? 'is-open' : ''}`}
                     onClick={() => setOpenIndex(isOpen ? null : idx)}
                   >
-                    {/* Row Outer Header (Always Displays Index + Title + Plus Icon consistently) */}
+                    {/* Row Outer Header */}
                     <div className="services-row-header">
                       <span className="services-row-index">{service.index}</span>
 
@@ -192,7 +212,7 @@ export default function ServicesSection() {
                       </div>
                     </div>
 
-                    {/* Smooth Ultra-Fluid Accordion Expansion */}
+                    {/* Smooth Accordion Expansion */}
                     <AnimatePresence initial={false}>
                       {isOpen && (
                         <motion.div
@@ -263,6 +283,53 @@ export default function ServicesSection() {
               })}
             </div>
 
+            {/* Global Network Showcase Block ("We Are Everywhere") */}
+            <motion.div variants={itemVariants} className="services-globe-showcase">
+              <div className="services-globe-grid">
+                <div className="services-globe-info">
+                  <h3 className="services-globe-title">
+                    We are everywhere.
+                  </h3>
+
+                  <p className="services-globe-desc">
+                    Operating across key digital epicenters worldwide — delivering high-performance platforms, AI agent architectures, and custom web engines with 24/7 continuous engineering.
+                  </p>
+
+                  <div className="services-globe-stats">
+                    <div className="globe-stat-item">
+                      <span className="globe-stat-value">12+</span>
+                      <span className="globe-stat-label">Global Hubs</span>
+                    </div>
+                    <div className="globe-stat-item">
+                      <span className="globe-stat-value">99.99%</span>
+                      <span className="globe-stat-label">Uptime SLA</span>
+                    </div>
+                    <div className="globe-stat-item">
+                      <span className="globe-stat-value">24/7</span>
+                      <span className="globe-stat-label">Active Support</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="services-globe-canvas-wrapper">
+                  <Globe
+                    markers={globalMarkers}
+                    arcs={globalArcs}
+                    className="services-globe-canvas"
+                    markerColor={[0.1, 0.85, 0.95]}
+                    baseColor={[0.85, 0.9, 1.0]}
+                    arcColor={[0.3, 0.75, 1.0]}
+                    glowColor={[0.15, 0.3, 0.5]}
+                    dark={1}
+                    mapBrightness={7}
+                    markerSize={0.03}
+                    markerElevation={0.01}
+                    speed={0.0035}
+                  />
+                </div>
+              </div>
+            </motion.div>
+
             {/* Bottom Call-To-Action Pill Button */}
             <motion.div variants={itemVariants} className="services-footer-cta">
               <button className="services-cta-btn" onClick={() => navigate('/contact')}>
@@ -275,3 +342,4 @@ export default function ServicesSection() {
     </div>
   );
 }
+

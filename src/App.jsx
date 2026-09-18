@@ -4,7 +4,6 @@ import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import QuolyBotGadget from './components/QuolyBotGadget';
 import QuolyTechPreloader from './components/QuolyTechPreloader';
 import AuthModal from './components/AuthModal';
 import ScrollToTop from './components/ScrollToTop';
@@ -52,7 +51,6 @@ function AppContent() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      <QuolyBotGadget />
       <ScrollToTop />
       <Footer />
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />

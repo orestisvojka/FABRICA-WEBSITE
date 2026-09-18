@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "QuolyTech® Studio AI Knowledge",
+  "name_for_model": "quolytech_studio",
+  "description_for_human": "Official AI knowledge plugin and directory for QuolyTech® Studio digital agency services, portfolio, and contact info.",
+  "description_for_model": "Provides full architectural details, service descriptions, team metadata, and portfolio information for QuolyTech® Studio.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://quolytech.com/sitemap.xml"
+  },
+  "logo_url": "https://quolytech.com/quolytech-logo.jpg",
+  "contact_email": "support@quolytech.com",
+  "legal_info_url": "https://quolytech.com/privacy"
+}

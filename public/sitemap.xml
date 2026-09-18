@@ -8,49 +8,49 @@
   <!-- Core Pages -->
   <url>
     <loc>https://quolytech.com/</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://quolytech.com/studio</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://quolytech.com/projects</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://quolytech.com/blog</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://quolytech.com/contact</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://quolytech.com/terms</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <url>
     <loc>https://quolytech.com/privacy</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -58,49 +58,49 @@
   <!-- Key Project Case Studies -->
   <url>
     <loc>https://quolytech.com/projects/autobuba</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://quolytech.com/projects/boltshift</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://quolytech.com/projects/cloudwatch</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://quolytech.com/projects/ephemeral</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://quolytech.com/projects/powersurge</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://quolytech.com/projects/mastermail</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://quolytech.com/projects/warpspeed</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -108,30 +108,52 @@
   <!-- Blog Articles & Insights -->
   <url>
     <loc>https://quolytech.com/blog/future-of-ai-agents-2026</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://quolytech.com/blog/nextjs-vs-vite-architecture</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://quolytech.com/blog/design-systems-that-scale</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
+  <!-- XML & AI Discovery Files -->
   <url>
-    <loc>https://quolytech.com/blog/how-we-doubled-autobuba-conversion</loc>
-    <lastmod>2026-08-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://quolytech.com/llms.txt</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://quolytech.com/llms-full.txt</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://quolytech.com/rss.xml</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://quolytech.com/feed.xml</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
   </url>
 
 </urlset>

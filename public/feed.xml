@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>QuolyTech® Studio — Web Design, Branding, AI &amp; Digital Growth</title>
+    <link>https://quolytech.com</link>
+    <description>Official XML feed of QuolyTech® Studio (CREATE. HELP. GROW.). High-performance web development, mobile apps, UI/UX design, and AI agent engineering.</description>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 18 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://quolytech.com/feed.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Web Development &amp; Modernization</title>
+      <link>https://quolytech.com/services#web-development</link>
+      <description>Corporate websites, e-commerce platforms, customer portals, interactive dashboards, and custom web applications built with React, Vite, and Next.js.</description>
+      <pubDate>Fri, 18 Sep 2026 00:00:00 GMT</pubDate>
+      <guid>https://quolytech.com/services#web-development</guid>
+    </item>
+
+    <item>
+      <title>AI &amp; Autonomous AI Agents Technology</title>
+      <link>https://quolytech.com/services#ai-technology</link>
+      <description>Custom AI customer support assistants, lead qualification bots, code generation tooling, internal knowledge bases, and automated QA workflows.</description>
+      <pubDate>Fri, 18 Sep 2026 00:00:00 GMT</pubDate>
+      <guid>https://quolytech.com/services#ai-technology</guid>
+    </item>
+
+    <item>
+      <title>Mobile App Development (iOS &amp; Android)</title>
+      <link>https://quolytech.com/services#mobile-development</link>
+      <description>Full lifecycle mobile product engineering for iOS, Android, and cross-platform Flutter/React Native platforms.</description>
+      <pubDate>Fri, 18 Sep 2026 00:00:00 GMT</pubDate>
+      <guid>https://quolytech.com/services#mobile-development</guid>
+    </item>
+
+    <item>
+      <title>Digital Marketing &amp; Growth Engine</title>
+      <link>https://quolytech.com/services#digital-marketing</link>
+      <description>Paid ad campaign management, social media optimization, lead generation funnels, and conversion rate optimization.</description>
+      <pubDate>Fri, 18 Sep 2026 00:00:00 GMT</pubDate>
+      <guid>https://quolytech.com/services#digital-marketing</guid>
+    </item>
+
+    <item>
+      <title>Future of AI Agents &amp; Autonomous Workflows in 2026</title>
+      <link>https://quolytech.com/blog/future-of-ai-agents-2026</link>
+      <description>Explore how generative AI models and multi-agent frameworks are transforming enterprise operational productivity.</description>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
+      <guid>https://quolytech.com/blog/future-of-ai-agents-2026</guid>
+    </item>
+
+    <item>
+      <title>Next.js vs Vite: Architectural Guide for Modern Web Apps</title>
+      <link>https://quolytech.com/blog/nextjs-vs-vite-architecture</link>
+      <description>Deep technical analysis comparing Next.js App Router and Vite + React client performance for enterprise products.</description>
+      <pubDate>Mon, 14 Sep 2026 00:00:00 GMT</pubDate>
+      <guid>https://quolytech.com/blog/nextjs-vs-vite-architecture</guid>
+    </item>
+
+    <item>
+      <title>Design Systems That Scale: From Figma to Production Component Libraries</title>
+      <link>https://quolytech.com/blog/design-systems-that-scale</link>
+      <description>How we design, document, and deploy modular design tokens and UI components across web and mobile platforms.</description>
+      <pubDate>Fri, 11 Sep 2026 00:00:00 GMT</pubDate>
+      <guid>https://quolytech.com/blog/design-systems-that-scale</guid>
+    </item>
+  </channel>
+</rss>

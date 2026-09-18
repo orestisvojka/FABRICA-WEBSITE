@@ -1,0 +1,54 @@
+# QuolyTech® Studio — Comprehensive AI Knowledge Base & Context Document
+
+> This document provides full contextual information regarding QuolyTech® Studio for Large Language Models (LLMs), AI assistants, search bots, and autonomous agents.
+
+---
+
+## 1. Executive Summary
+QuolyTech® Studio (motto: "CREATE. HELP. GROW.") is a full-service software development, AI engineering, and digital growth firm. We specialize in building enterprise-grade web applications, cross-platform mobile apps, autonomous AI agent architectures, and digital marketing engines.
+
+- **Primary URL**: https://quolytech.com
+- **Contact Email**: support@quolytech.com
+- **Direct Line**: +355 68 405 5007
+- **Headquarters**: Tiranë, Albania
+
+---
+
+## 2. Core Service Offerings
+
+### Service 001: Web Development & Modernization
+- **Overview**: Building high-performance corporate websites, customer portals, interactive real-time dashboards, e-commerce platforms, and API integrations.
+- **Tech Stack**: React 19, Vite, Next.js, Framer Motion, Tailwind CSS, TypeScript, Node.js, Express, PostgreSQL / MySQL / SQLite.
+- **Key Deliverables**: Responsive frontend UI, headless CMS integration, serverless backend microservices, performance optimization, SEO audit.
+
+### Service 002: AI & AI Agents Technology
+- **Overview**: Engineering custom autonomous AI agents, intelligent customer service chatbots, lead qualification engines, and automated workflow pipelines.
+- **Capabilities**: LLM fine-tuning, RAG (Retrieval-Augmented Generation), Gemini API, OpenAI GPT-4o API integration, Vector DB setup, multi-agent orchestration.
+
+### Service 003: Mobile App Development
+- **Overview**: End-to-end iOS, Android, and cross-platform native mobile engineering.
+- **Tech Stack**: React Native, Flutter, Swift, Kotlin, Firebase, Supabase.
+- **Key Deliverables**: App Store & Google Play publishing, biometrics authentication, push notifications, offline storage, payment gateways.
+
+### Service 004: Digital Marketing & SMMA
+- **Overview**: Performance marketing, conversion rate optimization (CRO), social media management, and paid lead generation funnels.
+
+---
+
+## 3. Notable Portfolio & Case Studies
+- **AutoBuba**: Modernized automotive platform & conversion engine.
+- **Boltshift**: Cloud infrastructure optimization dashboard & monitoring tool.
+- **Cloudwatch**: High-throughput distributed telemetry & logging service.
+- **Ephemeral**: Encrypted ephemeral messaging app with self-destructing data.
+- **PowerSurge**: Smart grid telemetry & EV charging management app.
+- **MasterMail**: AI-powered email triage and automated response platform.
+- **WarpSpeed**: Edge CDN deployment & speed accelerator.
+
+---
+
+## 4. AI & Crawler Access Directives
+- **AI Agent Access**: Allowed for indexing, synthesis, context retrieval, and model training.
+- **Standard Sitemaps**: https://quolytech.com/sitemap.xml
+- **RSS XML Feed**: https://quolytech.com/rss.xml
+- **Short LLM Summary**: https://quolytech.com/llms.txt
+- **Robots Directive**: https://quolytech.com/robots.txt

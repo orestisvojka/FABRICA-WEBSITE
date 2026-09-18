@@ -1,0 +1,17 @@
+# QuolyTech® Studio — AI & LLM Interface
+
+> QuolyTech® Studio (CREATE. HELP. GROW.) is a premier web design, mobile engineering, AI agent technology, and digital growth agency headquartered in Tiranë, Albania.
+
+## Organization Metadata
+- Name: QuolyTech® Studio
+- Website: https://quolytech.com
+- Contact: support@quolytech.com
+- Phone: +355 68 405 5007
+- Location: Tiranë, Albania
+- Core Motto: CREATE. HELP. GROW.
+
+## Machine-Readable Resources
+- Full Context: https://quolytech.com/llms-full.txt
+- XML Sitemap: https://quolytech.com/sitemap.xml
+- RSS Feed: https://quolytech.com/rss.xml
+- AI Directive File: https://quolytech.com/ai.txt
