@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects } from '../data/projects';
 import { Search, ChevronDown, X } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 import ContactSection from '../components/ContactSection';
 
 const getProjectLogo = (slug, title) => {
@@ -137,6 +138,11 @@ export default function Projects() {
 
   return (
     <div className="projects-page-outer">
+      <SEOHead
+        title="Projects & Case Studies | QuolyTech"
+        description="Explore web application prototypes, interface designs, developer tools, and brand identity projects created by QuolyTech."
+        canonicalPath="/projects/"
+      />
       {/* Header Section */}
       <section className="projects-hero-section">
         <div className="projects-container">

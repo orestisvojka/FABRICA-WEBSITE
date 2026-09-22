@@ -1,30 +1,28 @@
-# QuolyTech® Studio — AI & LLM Interface
+# QuolyTech
 
-> QuolyTech® Studio (CREATE. HELP. GROW.) is a premier web design, mobile engineering, AI agent technology, and digital growth agency headquartered in Tiranë, Albania.
+QuolyTech is a digital technology studio based in Tiranë, Albania.
 
-## Organization Metadata
-- Name: QuolyTech® Studio
-- Website: https://quolytech.com
-- Contact: support@quolytech.com
-- Phone: +355 68 405 5007
-- Location: Tiranë, Albania
-- Core Motto: CREATE. HELP. GROW.
+## Positioning
 
-## Core Capabilities
-- Web Development & Modernization: Enterprise web applications, React/Vite/Next.js platforms, customer portals, dashboards, e-commerce, and high-performance redesigns.
-- AI & AI Agent Engineering: Custom autonomous support bots, sales qualification agents, internal knowledge retrieval tools, and workflow automation.
-- Mobile App Development: Full lifecycle iOS, Android, and cross-platform native application development.
-- Digital Marketing & SMMA: Paid ad campaign strategy, conversion UX optimization, and lead generation engines.
+QuolyTech builds websites, mobile applications, AI agents, custom software and digital solutions that help businesses operate, grow and improve their online presence.
 
-## Key Pages & Information
-- Home: https://quolytech.com/
-- Studio & Team: https://quolytech.com/studio
-- Portfolio & Case Studies: https://quolytech.com/projects
-- Insights & Blog: https://quolytech.com/blog
-- Contact & Inquiries: https://quolytech.com/contact
+## Core Services
 
-## Machine-Readable Resources
-- Full LLM Context Documentation: https://quolytech.com/llms-full.txt
-- XML Sitemap: https://quolytech.com/sitemap.xml
-- RSS Feed: https://quolytech.com/rss.xml
-- AI Directive File: https://quolytech.com/ai.txt
+- Web Development (Custom Websites, Web Applications, React, Next.js, WordPress, PHP, MySQL)
+- AI Agent Development (24/7 Support Agents, Lead Qualification, Internal Knowledge Search, Workflow Automation)
+- Mobile App Development (iOS & Android Cross-Platform Applications, React Native)
+- Custom Software Development (Operational Dashboards, Admin Portals, REST APIs)
+- Business Automation (System Integrations, Webhooks, Data Pipelines)
+- SEO & Digital Growth (Technical SEO, Core Web Vitals, Schema.org Data)
+- Branding & Digital Identity (Logo Systems, Visual Guidelines, Typography Tokens)
+
+## Location
+
+Tiranë, Albania
+
+## Contact & Website
+
+- Website: https://quolytech.com/
+- Contact Page: https://quolytech.com/contact/
+- Email: support@quolytech.com
+- Phone / WhatsApp: +355 68 405 5007

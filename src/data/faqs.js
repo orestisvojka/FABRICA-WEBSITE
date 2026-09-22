@@ -1,49 +1,45 @@
 export const testimonials = [
   {
-    id: "boltshift-quote",
-    quote: "QuolyTech Studio completely overhauled our brand and web application. Their attention to design details, performance speed, and typography surpassed every expectation. Conversion rate jumped by 140% post-launch.",
-    author: "George Stern",
-    role: "VP of Product",
-    company: "Boltshift Inc.",
+    id: "testimonial-1",
+    quote: "QuolyTech built a clear, responsive website for our service operations in Tiranë. Communication was direct, project milestones were delivered on schedule, and page speed performance is excellent.",
+    author: "Local Business Management",
+    role: "Operations Lead",
+    company: "Commercial Client",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
   },
   {
-    id: "ephemeral-quote",
-    quote: "Working with QuolyTech felt like working with a high-end architectural firm for the web. Their dark-mode visual system gave us immediate credibility with tier-1 venture investors.",
-    author: "Elena Rostova",
-    role: "Co-Founder & CEO",
-    company: "Ephemeral Labs",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80"
-  },
-  {
-    id: "powersurge-quote",
-    quote: "The speed and polish of QuolyTech's web apps are unmatched. They delivered a complex real-time dashboard 2 weeks ahead of our series B announcement schedule.",
-    author: "Marcus Vance",
-    role: "Head of Technology",
-    company: "Powersurge Energy",
+    id: "testimonial-2",
+    quote: "The team implemented a custom web application and lead capture workflow that streamlined our daily customer inquiry management.",
+    author: "Client Project Representative",
+    role: "Business Director",
+    company: "Service Partner",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
   }
 ];
 
 export const faqs = [
   {
-    question: "What services do you offer?",
-    answer: "We specialize in Web Design & Development, Branding & Identity, SEO Optimization, and Social Media Growth Campaigns tailored for tech companies and modern brands."
+    question: "What services does QuolyTech provide?",
+    answer: "QuolyTech provides Web Development, AI Agent Development, Mobile App Development, Custom Software Development, Business Automation, SEO, Digital Marketing, and Branding."
   },
   {
-    question: "How long does a project usually take?",
-    answer: "A standard branding or web design project typically ranges from 4 to 8 weeks depending on scope, custom interactions, and asset requirements."
+    question: "Where is QuolyTech located?",
+    answer: "QuolyTech is a digital technology studio based in Tiranë, Albania, serving clients locally and internationally."
   },
   {
-    question: "Do you offer ongoing retainer services?",
-    answer: "Yes! We partner with clients on a monthly subscription model for continuous design support, web maintenance, performance tuning, and new feature rollouts."
+    question: "What is an AI agent and how can it help my business?",
+    answer: "An AI agent is an autonomous software system that can handle customer support inquiries 24/7, qualify incoming sales leads, query internal documentation, and automate repetitive administrative workflows."
   },
   {
-    question: "What technology stack do you use?",
-    answer: "We build using React, Vite, modern CSS modules, and custom WebGL shaders, ensuring lightning-fast load times and seamless responsiveness across all screen sizes."
+    question: "What technologies do you use for web and application development?",
+    answer: "We build modern frontend applications using React, Next.js, HTML5, CSS3, and JavaScript. For backends, databases, and CMS structures, we work with Node.js, PHP, MySQL, and WordPress based on project requirements."
   },
   {
-    question: "How do we get started on a project?",
-    answer: "Reach out via our Contact page or click 'Let's talk' on our site. We'll schedule a discovery call within 24 hours to align on goals, scope, and timeline."
+    question: "How long does a website or digital project take to complete?",
+    answer: "Timeline depends on scope and features. Standard business websites typically take 3 to 6 weeks, while custom web applications or mobile apps range from 6 to 12 weeks."
+  },
+  {
+    question: "How can I start a project with QuolyTech?",
+    answer: "You can reach out through our Contact page or click 'Start a Project'. We will review your requirements and schedule a project discovery discussion within 24 hours."
   }
 ];

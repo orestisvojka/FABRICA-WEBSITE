@@ -1,6 +1,6 @@
 # ==========================================================================
-# ROBOTS.TXT — QUOLYTECH® STUDIO (CREATE. HELP. GROW.)
-# Search Engine, Generative AI & LLM Discovery Configuration
+# ROBOTS.TXT — QUOLYTECH (https://quolytech.com/)
+# Search Engine, Generative AI & LLM Crawling Directives
 # ==========================================================================
 
 # Standard Search Engine Crawlers
@@ -10,7 +10,7 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /private/
 
-# AI, LLM & Web Indexing Crawlers (ChatGPT, Claude, Gemini, Perplexity, Applebot, ByteDance, Meta)
+# AI, LLM & Web Indexing Crawlers
 User-agent: GPTBot
 Allow: /
 
@@ -50,11 +50,5 @@ Allow: /
 User-agent: Cohere-ai
 Allow: /
 
-# XML Sitemap & AI Discovery File Directives
+# Sitemap Index
 Sitemap: https://quolytech.com/sitemap.xml
-Sitemap: https://quolytech.com/rss.xml
-Sitemap: https://quolytech.com/feed.xml
-
-# LLM & AI Context Directives
-# LLMs-txt: https://quolytech.com/llms.txt
-# AI-txt: https://quolytech.com/ai.txt

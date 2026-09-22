@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import SEOHead from '../components/SEOHead';
 import ContactSection from '../components/ContactSection';
 
 export default function Privacy() {
@@ -122,6 +123,11 @@ Location: Tiranë, Albania`
 
   return (
     <div className="legal-page-outer">
+      <SEOHead
+        title="Privacy Policy | QuolyTech"
+        description="Data privacy policy and GDPR compliance guidelines for QuolyTech in Tiranë, Albania."
+        canonicalPath="/privacy/"
+      />
       {/* Hero Header Section */}
       <section className="legal-hero-section">
         <div className="legal-container">

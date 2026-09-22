@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import SEOHead from '../components/SEOHead';
 import ContactSection from '../components/ContactSection';
 
 export default function Terms() {
@@ -120,6 +121,11 @@ Location: Tiranë, Albania`
 
   return (
     <div className="legal-page-outer">
+      <SEOHead
+        title="Terms of Service | QuolyTech"
+        description="Terms of service governing web development, AI agent deployment, software services, and client contracts with QuolyTech in Tiranë, Albania."
+        canonicalPath="/terms/"
+      />
       {/* Hero Header Section */}
       <section className="legal-hero-section">
         <div className="legal-container">

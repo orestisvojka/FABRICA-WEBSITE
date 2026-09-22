@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { teamMembers, getTeamMember } from '../data/team';
 import { projects } from '../data/projects';
+import SEOHead from '../components/SEOHead';
 import ContactSection from '../components/ContactSection';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -50,6 +51,11 @@ export default function TeamDetail() {
 
   return (
     <div className="project-detail-outer team-detail-outer">
+      <SEOHead
+        title={`${member.name} - ${member.role} | QuolyTech`}
+        description={`${member.bio} QuolyTech digital technology studio in Tiranë, Albania.`}
+        canonicalPath={`/team/${member.slug}/`}
+      />
       <div className="project-detail-container team-detail-container">
         {/* Title & Hero Section */}
         <section className="project-detail-hero">

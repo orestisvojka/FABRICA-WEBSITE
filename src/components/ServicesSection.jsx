@@ -40,58 +40,59 @@ const servicesData = [
   {
     id: '001',
     index: '(001)',
-    title: 'Web development & modernization',
-    description: 'Corporate websites, e-commerce, customer portals, dashboards, and custom web applications built for performance.',
+    title: 'Web development',
+    slug: 'web-development',
+    description: 'Custom websites and web applications designed for performance, usability, mobile devices and business growth using React, Next.js, HTML, CSS, JavaScript, PHP, MySQL, and WordPress.',
     image: '/service-1.png',
-    categories: ['Corporate websites', 'Landing pages', 'E-commerce', 'Portals & Dashboards', 'API integrations', 'Redesigns'],
+    categories: ['Custom Websites', 'React / Next.js', 'WordPress / PHP', 'E-commerce', 'Portals & Dashboards', 'Core Web Vitals'],
     count: 6
   },
   {
     id: '002',
     index: '(002)',
-    title: 'AI & AI Agents technology',
-    description: 'AI customer assistants, lead qualification agents, code generation tools, internal knowledge assistants, and automated workflows.',
+    title: 'AI Agent Development',
+    slug: 'ai-agents',
+    description: 'AI-powered agents and automation systems that help businesses handle customer support, lead qualification, internal workflows and repetitive tasks.',
     image: '/service-2.png',
-    categories: ['AI Chatbots', 'Sales Assistants', 'Lead Qualification', 'Knowledge Tools', 'Code Generation', 'Automated QA'],
+    categories: ['Customer Support AI', 'Lead Qualification', 'Internal Knowledge Agents', 'Booking Workflows', 'API & CRM Sync', 'Automation'],
     count: 6
   },
   {
     id: '003',
     index: '(003)',
     title: 'Mobile app development',
-    description: 'Full product lifecycle for iOS, Android, and cross-platform apps for businesses, marketplaces, and enterprise platforms.',
+    slug: 'mobile-app-development',
+    description: 'Mobile applications for businesses, startups and digital products, including cross-platform applications (React Native) and AI-powered experiences.',
     image: '/service-3.png',
-    categories: ['iOS & Android', 'Cross-platform', 'Marketplaces', 'Booking apps', 'Auth & Payments', 'Analytics'],
+    categories: ['iOS & Android', 'React Native', 'Cross-Platform', 'Customer Apps', 'Auth & Payments', 'App Store Setup'],
     count: 6
   },
   {
     id: '004',
     index: '(004)',
-    title: 'Digital marketing & SMMA',
-    description: 'Paid advertising, social media management, content strategy, and conversion optimization that turn traffic into business growth.',
+    title: 'Custom Software & Automation',
+    slug: 'software-development',
+    description: 'Custom digital platforms, business software and workflow automations designed around specific operational requirements, integrations and SEO growth.',
     image: '/service-4.png',
-    categories: ['Paid Advertising', 'Social Media', 'Lead Generation', 'Conversion UX', 'Campaign Strategy'],
-    count: 5
+    categories: ['Admin Portals', 'Operational Dashboards', 'API Integrations', 'Technical SEO', 'Digital Growth', 'Branding'],
+    count: 6
   }
 ];
 
 const globalMarkers = [
+  { id: "tirana", location: [41.3275, 19.8187], label: "Tiranë (HQ)" },
   { id: "sf", location: [37.7595, -122.4367], label: "San Francisco" },
   { id: "nyc", location: [40.7128, -74.006], label: "New York" },
   { id: "london", location: [51.5074, -0.1278], label: "London" },
   { id: "zurich", location: [47.3769, 8.5417], label: "Zurich" },
-  { id: "dubai", location: [25.2048, 55.2708], label: "Dubai" },
-  { id: "tokyo", location: [35.6762, 139.6503], label: "Tokyo" },
-  { id: "singapore", location: [1.3521, 103.8198], label: "Singapore" },
-  { id: "sydney", location: [-33.8688, 151.2093], label: "Sydney" },
+  { id: "dubai", location: [25.2048, 55.2708], label: "Dubai" }
 ];
 
 const globalArcs = [
-  { id: "sf-london", from: [37.7595, -122.4367], to: [51.5074, -0.1278], label: "SF → London" },
+  { id: "tirana-london", from: [41.3275, 19.8187], to: [51.5074, -0.1278], label: "Tiranë → London" },
+  { id: "tirana-nyc", from: [41.3275, 19.8187], to: [40.7128, -74.006], label: "Tiranë → NYC" },
   { id: "london-zurich", from: [51.5074, -0.1278], to: [47.3769, 8.5417], label: "London → Zurich" },
-  { id: "zurich-dubai", from: [47.3769, 8.5417], to: [25.2048, 55.2708], label: "Zurich → Dubai" },
-  { id: "dubai-tokyo", from: [25.2048, 55.2708], to: [35.6762, 139.6503], label: "Dubai → Tokyo" },
-  { id: "tokyo-singapore", from: [35.6762, 139.6503], to: [1.3521, 103.8198], label: "Tokyo → Singapore" },
+  { id: "zurich-dubai", from: [47.3769, 8.5417], to: [25.2048, 55.2708], label: "Zurich → Dubai" }
 ];
 
 export default function ServicesSection() {
@@ -172,7 +173,7 @@ export default function ServicesSection() {
             <div className="services-header-grid">
               <motion.div variants={itemVariants} className="services-badge-pill">
                 <span className="services-badge-plus">+</span>
-                <span className="services-badge-text">What we do</span>
+                <span className="services-badge-text">What we build</span>
               </motion.div>
 
               <motion.div variants={itemVariants} className="services-headline-box">
@@ -247,7 +248,7 @@ export default function ServicesSection() {
 
                             {/* Right Block: Pill-Shaped Category Tags */}
                             <div className="services-categories-block">
-                              <span className="services-cat-label">Categories</span>
+                              <span className="services-cat-label">Capabilities</span>
                               <div className="services-pills-wrap">
                                 {service.categories.map((cat, cIdx) => (
                                   <motion.span
@@ -283,30 +284,30 @@ export default function ServicesSection() {
               })}
             </div>
 
-            {/* Global Network Showcase Block ("We Are Everywhere") */}
+            {/* Global Network Showcase Block */}
             <motion.div variants={itemVariants} className="services-globe-showcase">
               <div className="services-globe-grid">
                 <div className="services-globe-info">
                   <h3 className="services-globe-title">
-                    We are everywhere.
+                    Digital Technology Studio in Tiranë, Albania.
                   </h3>
 
                   <p className="services-globe-desc">
-                    Operating across key digital epicenters worldwide — delivering high-performance platforms, AI agent architectures, and custom web engines with 24/7 continuous engineering.
+                    QuolyTech builds websites, mobile applications, AI agents, custom software and digital solutions that help businesses operate, grow and improve their online presence locally and internationally.
                   </p>
 
                   <div className="services-globe-stats">
                     <div className="globe-stat-item">
-                      <span className="globe-stat-value">12+</span>
-                      <span className="globe-stat-label">Global Hubs</span>
+                      <span className="globe-stat-value">Tiranë</span>
+                      <span className="globe-stat-label">Albania HQ</span>
                     </div>
                     <div className="globe-stat-item">
-                      <span className="globe-stat-value">99.99%</span>
-                      <span className="globe-stat-label">Uptime SLA</span>
+                      <span className="globe-stat-value">Web & AI</span>
+                      <span className="globe-stat-label">Core Focus</span>
                     </div>
                     <div className="globe-stat-item">
-                      <span className="globe-stat-value">24/7</span>
-                      <span className="globe-stat-label">Active Support</span>
+                      <span className="globe-stat-value">Global</span>
+                      <span className="globe-stat-label">Client Reach</span>
                     </div>
                   </div>
                 </div>
@@ -333,7 +334,7 @@ export default function ServicesSection() {
             {/* Bottom Call-To-Action Pill Button */}
             <motion.div variants={itemVariants} className="services-footer-cta">
               <button className="services-cta-btn" onClick={() => navigate('/contact')}>
-                Get started
+                Start a Project
               </button>
             </motion.div>
           </motion.div>
@@ -342,4 +343,3 @@ export default function ServicesSection() {
     </div>
   );
 }
-

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { blogPosts } from '../data/blog';
 import { Copy, Check } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 
 export default function BlogPostDetail() {
   const { slug } = useParams();
@@ -21,8 +22,62 @@ export default function BlogPostDetail() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "description": post.excerpt,
+    "image": post.coverImage.startsWith('http') ? post.coverImage : `https://quolytech.com${post.coverImage}`,
+    "author": {
+      "@type": "Organization",
+      "name": "QuolyTech"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "QuolyTech",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://quolytech.com/quolytech-logo.jpg"
+      }
+    },
+    "datePublished": "2026-01-01",
+    "mainEntityOfPage": `https://quolytech.com/blog/${post.slug}/`
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://quolytech.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://quolytech.com/blog/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": post.title,
+        "item": `https://quolytech.com/blog/${post.slug}/`
+      }
+    ]
+  };
+
   return (
     <div className="blog-detail-outer">
+      <SEOHead
+        title={`${post.title} | QuolyTech Blog`}
+        description={post.excerpt}
+        canonicalPath={`/blog/${post.slug}/`}
+        ogType="article"
+        jsonLd={[articleJsonLd, breadcrumbJsonLd]}
+      />
       <div className="blog-detail-container">
         {/* Dark Island Card Container (CTA Card Aesthetic) */}
         <motion.div

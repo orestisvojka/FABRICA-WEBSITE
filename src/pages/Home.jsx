@@ -2,10 +2,8 @@ import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { projects } from '../data/projects';
-import { services } from '../data/services';
-import { testimonials, faqs } from '../data/faqs';
-import { ArrowRight, ChevronLeft, ChevronRight, Check, ArrowUpRight } from 'lucide-react';
-import CtaCard from '../components/CtaCard';
+import { ArrowUpRight } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 import ClientLogos from '../components/ClientLogos';
 import ProjectsMatrix from '../components/ProjectsMatrix';
 import WhyChooseUsSection from '../components/WhyChooseUsSection';
@@ -20,9 +18,6 @@ import ContactSection from '../components/ContactSection';
 
 export default function Home() {
   const navigate = useNavigate();
-  const [openFaq, setOpenFaq] = useState(null);
-
-  const selectedProjects = projects.slice(0, 4);
 
   // Hero Scroll-linked Recession Parallax
   const heroRef = useRef(null);
@@ -33,7 +28,6 @@ export default function Home() {
 
   const heroScale = useTransform(heroScrollProgress, [0, 1], [1, 0.95]);
   const heroOpacity = useTransform(heroScrollProgress, [0, 0.8, 1], [1, 0.9, 0.75]);
-  const ctaParallaxY = useTransform(heroScrollProgress, [0, 1], [0, -35]);
 
   // Character stagger animation variants
   const titleText = "QuolyTech";
@@ -53,9 +47,57 @@ export default function Home() {
     }
   };
 
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "QuolyTech",
+    "url": "https://quolytech.com/",
+    "logo": "https://quolytech.com/quolytech-logo.jpg",
+    "description": "QuolyTech is a digital technology studio based in Tiranë, Albania, building websites, mobile applications, AI agents and custom digital solutions for businesses.",
+    "email": "support@quolytech.com",
+    "telephone": "+355684055007",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tiranë",
+      "addressCountry": "AL"
+    },
+    "sameAs": [
+      "https://quolytech.com"
+    ],
+    "knowsAbout": [
+      "Web Development",
+      "AI Agent Development",
+      "Mobile App Development",
+      "Custom Software Development",
+      "Business Automation",
+      "SEO",
+      "Digital Marketing",
+      "Branding"
+    ]
+  };
+
+  const webSiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "QuolyTech",
+    "url": "https://quolytech.com/",
+    "description": "We Build Websites, Apps & AI Solutions for Growing Businesses.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "QuolyTech"
+    }
+  };
+
   return (
     <div>
-      {/* High-Contrast Architectural Dark Hero Island */}
+      <SEOHead
+        title="QuolyTech | Web Development, AI Agents & Digital Solutions"
+        description="QuolyTech is a digital technology studio in Tiranë, Albania building websites, mobile apps, AI agents and custom digital solutions for businesses."
+        canonicalPath="/"
+        jsonLd={[organizationJsonLd, webSiteJsonLd]}
+      />
+
+      {/* Architectural Dark Hero Island */}
       <div className="hero-wrapper" ref={heroRef}>
         <motion.section 
           className="hero-island"
@@ -64,11 +106,11 @@ export default function Home() {
           {/* Kinetic Background Texture */}
           <img 
             src="/hero-texture.png" 
-            alt="Dark atmospheric background" 
+            alt="QuolyTech digital technology studio background texture" 
             className="hero-texture-bg"
           />
 
-          {/* Swiss Crosshair Grid Overlay (4 anchors) */}
+          {/* Swiss Crosshair Grid Overlay */}
           <div className="hero-crosshair-grid">
             <div className="crosshair-item" style={{ top: '58%', left: '8%' }}></div>
             <div className="crosshair-item" style={{ top: '58%', left: '33%' }}></div>
@@ -100,7 +142,7 @@ export default function Home() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.35, duration: 0.5 }}
                 >
-                  Studio
+                  Technology Studio
                 </motion.span>
               </div>
 
@@ -110,10 +152,10 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
               >
-                <div className="hero-service-item">Branding and Identity</div>
-                <div className="hero-service-item">Social Media Marketing</div>
-                <div className="hero-service-item">Web Design and Development</div>
-                <div className="hero-service-item">SEO Optimization</div>
+                <div className="hero-service-item">Web Development</div>
+                <div className="hero-service-item">AI Agent Development</div>
+                <div className="hero-service-item">Mobile App Development</div>
+                <div className="hero-service-item">Custom Software & SEO</div>
               </motion.div>
             </div>
 
@@ -126,53 +168,39 @@ export default function Home() {
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
                 <p className="hero-statement-text">
-                  No generic websites. No empty <strong>marketing promises.</strong> Just tools and strategies that help your business grow and your brand shine.
+                  QuolyTech is a digital technology studio based in <strong>Tiranë, Albania</strong>, building websites, mobile applications, AI agents and custom digital solutions for businesses locally and internationally.
                 </p>
-                <Link to="/contact" className="hero-action-cta-btn">
-                  <span>Let's talk</span>
-                  <ArrowUpRight size={16} />
-                </Link>
+
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <Link to="/contact" className="hero-action-cta-btn">
+                    <span>Start a Project</span>
+                    <ArrowUpRight size={16} />
+                  </Link>
+
+                  <Link to="/projects" style={{ color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: '600', textDecoration: 'none', padding: '10px 16px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.15)' }}>
+                    Explore Our Work
+                  </Link>
+                </div>
               </motion.div>
 
               <div className="hero-copyright-col">
-                © 2026 QuolyTech® Studio
+                © QuolyTech • Tiranë, Albania
               </div>
             </div>
           </div>
         </motion.section>
       </div>
 
-      {/* Social Proof Validation Matrix: Our Clients (2016-25©) */}
       <ClientLogos />
-
-      {/* Curated Portfolio Matrix: Projects. (6 Case Studies) */}
       <ProjectsMatrix />
-
-      {/* Kinetic Statistics & Metric Module: Why Choose Us */}
       <WhyChooseUsSection />
-
-      {/* Kinetic Services Section: What We Do */}
       <ServicesSection />
-
-      {/* About Us / How We Launch Section */}
       <AboutUsSection />
-
-      {/* Experiences & Testimonials Section */}
       <ExperiencesSection />
-
-      {/* Dark Architectural Pricing Section */}
       <PricingSection />
-
-      {/* The Faces Behind The Projects (Team) Section */}
       <TeamSection />
-
-      {/* Asymmetrical 40/60 FLIP FAQ Section */}
       <FaqSection />
-
-      {/* Editorial Insights / Blog Section */}
       <InsightsSection />
-
-      {/* Atmospheric Dark "Let's talk." Contact Section */}
       <ContactSection />
     </div>
   );

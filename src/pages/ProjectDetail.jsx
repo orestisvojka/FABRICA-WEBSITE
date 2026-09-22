@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { projects } from '../data/projects';
+import SEOHead from '../components/SEOHead';
 import ContactSection from '../components/ContactSection';
 
 const getProjectLogo = (slug, title) => {
@@ -116,8 +117,39 @@ export default function ProjectDetail() {
     }
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://quolytech.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Projects",
+        "item": "https://quolytech.com/projects/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": project.title,
+        "item": `https://quolytech.com/projects/${project.slug}/`
+      }
+    ]
+  };
+
   return (
     <div className="project-detail-outer">
+      <SEOHead
+        title={`${project.title} Case Study & Details | QuolyTech`}
+        description={`${project.description} ${project.statusLabel ? `[Status: ${project.statusLabel}]` : ''}`}
+        canonicalPath={`/projects/${project.slug}/`}
+        jsonLd={breadcrumbJsonLd}
+      />
       <div className="project-detail-container">
         {/* Title Section */}
         <section className="project-detail-hero">

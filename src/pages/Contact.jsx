@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Check } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -47,12 +48,37 @@ export default function Contact() {
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
-    }, 1200);
+    }, 1000);
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://quolytech.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contact",
+        "item": "https://quolytech.com/contact/"
+      }
+    ]
   };
 
   return (
     <div className="contact-page-outer">
-      <div className="contact-page-container">
+      <SEOHead
+        title="Contact QuolyTech | Start a Digital Project"
+        description="Contact QuolyTech in Tiranë, Albania to discuss your web development, mobile app, AI agent, custom software, or digital growth project."
+        canonicalPath="/contact/"
+        jsonLd={breadcrumbJsonLd}
+      />
+      <div className="contact-container">
         <section className="contact-hero-section">
           {/* Main Title */}
           <motion.h1

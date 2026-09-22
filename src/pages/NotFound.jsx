@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import SEOHead from '../components/SEOHead';
 import ContactSection from '../components/ContactSection';
 
 export default function NotFound() {
@@ -31,6 +32,11 @@ export default function NotFound() {
 
   return (
     <div style={{ backgroundColor: '#000000', color: '#ffffff', minHeight: '100vh', paddingTop: '150px' }}>
+      <SEOHead
+        title="404 Page Not Found | QuolyTech"
+        description="The requested page was not found."
+        canonicalPath="/404"
+      />
       <section style={{ paddingBottom: '100px' }}>
         <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
           <motion.div

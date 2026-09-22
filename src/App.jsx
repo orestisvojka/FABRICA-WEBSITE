@@ -10,6 +10,10 @@ import ScrollToTop from './components/ScrollToTop';
 
 import Home from './pages/Home';
 import Studio from './pages/Studio';
+import ServicesIndex from './pages/ServicesIndex';
+import ServiceDetail from './pages/ServiceDetail';
+import IndustriesIndex from './pages/IndustriesIndex';
+import IndustryDetail from './pages/IndustryDetail';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
 import Blog from './pages/Blog';
@@ -36,16 +40,33 @@ function AppContent() {
       <main style={{ flex: 1 }}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<Studio />} />
+          <Route path="/about/" element={<Studio />} />
           <Route path="/studio" element={<Studio />} />
+          <Route path="/services" element={<ServicesIndex />} />
+          <Route path="/services/" element={<ServicesIndex />} />
+          <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/services/:slug/" element={<ServiceDetail />} />
+          <Route path="/industries" element={<IndustriesIndex />} />
+          <Route path="/industries/" element={<IndustriesIndex />} />
+          <Route path="/industries/:slug" element={<IndustryDetail />} />
+          <Route path="/industries/:slug/" element={<IndustryDetail />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/" element={<Projects />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
+          <Route path="/projects/:slug/" element={<ProjectDetail />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPostDetail />} />
+          <Route path="/blog/:slug/" element={<BlogPostDetail />} />
           <Route path="/team/:slug" element={<TeamDetail />} />
           <Route path="/staff/:slug" element={<TeamDetail />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/contact/" element={<Contact />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/terms/" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/privacy/" element={<Privacy />} />
           <Route path="/500" element={<ServerError />} />
           <Route path="/505" element={<ServerError />} />
           <Route path="*" element={<NotFound />} />

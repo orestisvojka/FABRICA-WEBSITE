@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { blogPosts } from '../data/blog';
 import { ArrowUpRight } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 
 export default function Blog() {
   const navigate = useNavigate();
@@ -36,6 +37,11 @@ export default function Blog() {
 
   return (
     <div className="blog-page-outer">
+      <SEOHead
+        title="Blog & Technology Insights | QuolyTech"
+        description="Read technical articles and insights on AI agent development, web development, mobile applications, software architecture, and SEO by QuolyTech."
+        canonicalPath="/blog/"
+      />
       <div className="blog-container">
         {/* Header Section */}
         <section className="blog-hero-section">
