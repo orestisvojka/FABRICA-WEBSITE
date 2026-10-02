@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { services } from '../data/services';
+import { services, industries } from '../data/services';
 import SEOHead from '../components/SEOHead';
 import ContactSection from '../components/ContactSection';
 import FaqSection from '../components/FaqSection';
@@ -73,13 +73,25 @@ export default function ServiceDetail() {
     ]
   };
 
+  const faqJsonLd = service.faqs && service.faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": service.faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+    }))
+  } : null;
+
+  const relatedIndustries = industries.filter((i) => i.relevantServices.includes(service.title));
+
   return (
     <div style={{ backgroundColor: '#000000', color: '#ffffff', minHeight: '100vh' }}>
       <SEOHead
         title={currentTitle}
-        description={service.description}
+        description={service.metaDescription || service.description}
         canonicalPath={canonicalPath}
-        jsonLd={[jsonLd, breadcrumbJsonLd]}
+        jsonLd={[jsonLd, breadcrumbJsonLd, faqJsonLd].filter(Boolean)}
       />
 
       {/* Hero Section */}
@@ -202,6 +214,43 @@ export default function ServiceDetail() {
           </div>
         </div>
       </section>
+
+      {/* How It Works: Numbered Process Steps */}
+      {service.process && service.process.length > 0 && (
+        <section style={{ padding: '80px 0', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+          <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
+            <h2 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '20px', letterSpacing: '-0.02em' }}>
+              How It Works
+            </h2>
+            <ol style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px' }}>
+              {service.process.map((step, idx) => {
+                const [num, ...label] = step.split(' ');
+                return (
+                  <li key={idx} style={{ display: 'flex', alignItems: 'center', gap: '12px', backgroundColor: '#0d0d0d', border: '1px solid rgba(255,255,255,0.06)', padding: '16px 20px', borderRadius: '12px' }}>
+                    <span style={{ color: '#ffffff', fontWeight: '700', fontSize: '14px' }}>{num}</span>
+                    <span style={{ fontSize: '15px', color: '#d4d4d8', fontWeight: '500' }}>{label.join(' ')}</span>
+                  </li>
+                );
+              })}
+            </ol>
+
+            {relatedIndustries.length > 0 && (
+              <div style={{ marginTop: '48px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#ffffff', marginBottom: '16px' }}>
+                  Industries We Build This For
+                </h3>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+                  {relatedIndustries.map((ind) => (
+                    <Link key={ind.slug} to={`/industries/${ind.slug}/`} style={{ backgroundColor: '#0d0d0d', border: '1px solid rgba(255,255,255,0.12)', color: '#ffffff', fontSize: '14px', fontWeight: '600', padding: '10px 20px', borderRadius: '12px', textDecoration: 'none' }}>
+                      {ind.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Service FAQs Section */}
       {service.faqs && service.faqs.length > 0 && (

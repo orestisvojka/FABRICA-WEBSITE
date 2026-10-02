@@ -67,13 +67,21 @@ export default function Footer() {
               </p>
 
               {/* Client Success Manager Stamp */}
-              <div className="footer-manager-stamp">
-                <div className="footer-manager-avatar">
-                  <img src="/team-michael.png" alt="George Stern" />
+              <div 
+                className="footer-manager-stamp"
+                onClick={() => navigate('/team/henri-bajramaj')}
+                style={{ cursor: 'pointer' }}
+                title="View Henri Bajramaj Profile"
+              >
+                <div className="footer-manager-avatar footer-manager-icon-avatar">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg>
                 </div>
                 <div className="footer-manager-info">
-                  <span className="footer-manager-name">George Stern</span>
-                  <span className="footer-manager-role">Client Success Manager</span>
+                  <span className="footer-manager-name">Henri Bajramaj</span>
+                  <span className="footer-manager-role">Client Manager & Partnerships</span>
                 </div>
               </div>
             </motion.div>
@@ -167,15 +175,15 @@ export default function Footer() {
             <div className="footer-links-layout">
               {/* Direct Contact Column */}
               <motion.div variants={itemVariants} className="footer-contact-col">
-                <span className="footer-phone-number">(123) 555-2468</span>
+                <a href="tel:+355684055007" className="footer-phone-number">+355 68 405 5007</a>
                 <motion.a
-                  href="mailto:hello@quolytech.com"
+                  href="mailto:support@quolytech.com"
                   className="footer-email-link"
                   whileHover={{ x: 4 }}
                   transition={{ duration: 0.2 }}
                 >
                   <span className="footer-email-dot">●</span>
-                  <span className="footer-email-text">hello@quolytech.com</span>
+                  <span className="footer-email-text">support@quolytech.com</span>
                 </motion.a>
               </motion.div>
 
@@ -185,8 +193,11 @@ export default function Footer() {
                 <ul className="footer-link-list">
                   <li><Link to="/">Home</Link></li>
                   <li><Link to="/studio">Studio</Link></li>
+                  <li><Link to="/services/">Services</Link></li>
+                  <li><Link to="/industries/">Industries</Link></li>
                   <li><Link to="/projects">Projects</Link></li>
                   <li><Link to="/blog">Blog</Link></li>
+                  <li><Link to="/404">404 Error Page</Link></li>
                 </ul>
               </motion.div>
 
@@ -216,7 +227,7 @@ export default function Footer() {
 
           {/* Giant Brand Lockup */}
           <motion.div variants={itemVariants} className="footer-brand-lockup">
-            <h1 className="footer-giant-title">QuolyTech®</h1>
+            <p className="footer-giant-title">QuolyTech®</p>
             <span className="footer-giant-subtitle">Studio</span>
           </motion.div>
         </motion.div>
@@ -233,6 +244,8 @@ export default function Footer() {
             <Link to="/privacy">Privacy Policy</Link>
             <span className="footer-bar-sep">•</span>
             <Link to="/terms">Terms of Service</Link>
+            <span className="footer-bar-sep">•</span>
+            <Link to="/404">404 Page</Link>
           </div>
 
           <div className="footer-dark-right"></div>

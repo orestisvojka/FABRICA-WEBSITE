@@ -40,41 +40,41 @@ const servicesData = [
   {
     id: '001',
     index: '(001)',
-    title: 'Web development',
-    slug: 'web-development',
-    description: 'Custom websites and web applications designed for performance, usability, mobile devices and business growth using React, Next.js, HTML, CSS, JavaScript, PHP, MySQL, and WordPress.',
-    image: '/service-1.png',
-    categories: ['Custom Websites', 'React / Next.js', 'WordPress / PHP', 'E-commerce', 'Portals & Dashboards', 'Core Web Vitals'],
+    title: 'AI Systems & SaaS Platforms',
+    slug: 'ai-agents',
+    description: 'AI agents that automate support, lead qualification and repetitive processes, plus SaaS platforms and startup MVPs built from scratch: cloud-based, secure and ready for the global market. We also administer and maintain the systems they run on.',
+    image: '/service-ai-saas.jpg',
+    categories: ['AI Agents', 'Process Automation', 'SaaS Platforms', 'Startup MVPs', 'Cloud Architecture', 'Systems Management'],
     count: 6
   },
   {
     id: '002',
     index: '(002)',
-    title: 'AI Agent Development',
-    slug: 'ai-agents',
-    description: 'AI-powered agents and automation systems that help businesses handle customer support, lead qualification, internal workflows and repetitive tasks.',
-    image: '/service-2.png',
-    categories: ['Customer Support AI', 'Lead Qualification', 'Internal Knowledge Agents', 'Booking Workflows', 'API & CRM Sync', 'Automation'],
+    title: 'Web & Mobile App Development',
+    slug: 'web-development',
+    description: 'Fast, secure and scalable websites, web applications and iOS and Android apps, built with React, Next.js, React Native and Node.js.',
+    image: '/service-web-mobile.jpg',
+    categories: ['Web Applications', 'Business Websites', 'iOS & Android', 'React / Next.js', 'React Native', 'E-commerce'],
     count: 6
   },
   {
     id: '003',
     index: '(003)',
-    title: 'Mobile app development',
-    slug: 'mobile-app-development',
-    description: 'Mobile applications for businesses, startups and digital products, including cross-platform applications (React Native) and AI-powered experiences.',
-    image: '/service-3.png',
-    categories: ['iOS & Android', 'React Native', 'Cross-Platform', 'Customer Apps', 'Auth & Payments', 'App Store Setup'],
+    title: 'UI/UX Design & Branding',
+    slug: 'ui-ux-design',
+    description: 'User interfaces and digital experiences that are attractive, intuitive and functional, and brand identities that look consistent everywhere they appear.',
+    image: '/service-uiux.jpg',
+    categories: ['UI/UX Design', 'Prototypes', 'Design Systems', 'Logo & Identity', 'Brand Guidelines', 'Visual Assets'],
     count: 6
   },
   {
     id: '004',
     index: '(004)',
-    title: 'Custom Software & Automation',
-    slug: 'software-development',
-    description: 'Custom digital platforms, business software and workflow automations designed around specific operational requirements, integrations and SEO growth.',
-    image: '/service-4.png',
-    categories: ['Admin Portals', 'Operational Dashboards', 'API Integrations', 'Technical SEO', 'Digital Growth', 'Branding'],
+    title: 'Social Media Marketing',
+    slug: 'social-media-marketing',
+    description: 'Social media strategies and digital campaigns that grow your online presence and audience engagement, from startup launches to ongoing brand growth.',
+    image: '/service-social.jpg',
+    categories: ['Social Media Strategy', 'Content Creation', 'Digital Campaigns', 'Launch Marketing', 'Audience Engagement', 'SEO'],
     count: 6
   }
 ];
@@ -289,11 +289,11 @@ export default function ServicesSection() {
               <div className="services-globe-grid">
                 <div className="services-globe-info">
                   <h3 className="services-globe-title">
-                    Digital Technology Studio in Tiranë, Albania.
+                    Technology & Design Agency in Tiranë, Albania.
                   </h3>
 
                   <p className="services-globe-desc">
-                    QuolyTech builds websites, mobile applications, AI agents, custom software and digital solutions that help businesses operate, grow and improve their online presence locally and internationally.
+                    QuolyTech helps businesses grow through modern technology, smart innovation and premium design: AI systems and agents, startup and SaaS development, web and mobile apps, UI/UX design, systems management and social media marketing, locally and internationally.
                   </p>
 
                   <div className="services-globe-stats">

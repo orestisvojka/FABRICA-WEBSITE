@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { projects } from '../data/projects';
-import { ArrowUpRight } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import ClientLogos from '../components/ClientLogos';
 import ProjectsMatrix from '../components/ProjectsMatrix';
@@ -53,7 +52,7 @@ export default function Home() {
     "name": "QuolyTech",
     "url": "https://quolytech.com/",
     "logo": "https://quolytech.com/quolytech-logo.jpg",
-    "description": "QuolyTech is a digital technology studio based in Tiranë, Albania, building websites, mobile applications, AI agents and custom digital solutions for businesses.",
+    "description": "QuolyTech is a technology and design agency based in Tiranë, Albania. We help businesses grow with AI systems and agents, startup and SaaS development, web and mobile apps, UI/UX design, systems management and social media marketing.",
     "email": "support@quolytech.com",
     "telephone": "+355684055007",
     "address": {
@@ -65,13 +64,17 @@ export default function Home() {
       "https://quolytech.com"
     ],
     "knowsAbout": [
-      "Web Development",
       "AI Agent Development",
+      "Business Process Automation",
+      "Startup MVP Development",
+      "SaaS Development",
+      "Web Development",
       "Mobile App Development",
+      "UI/UX Design",
+      "IT Systems Management",
+      "Social Media Marketing",
       "Custom Software Development",
-      "Business Automation",
       "SEO",
-      "Digital Marketing",
       "Branding"
     ]
   };
@@ -81,7 +84,7 @@ export default function Home() {
     "@type": "WebSite",
     "name": "QuolyTech",
     "url": "https://quolytech.com/",
-    "description": "We Build Websites, Apps & AI Solutions for Growing Businesses.",
+    "description": "Technology & design agency: AI agents, startup & SaaS development, web & mobile apps, UI/UX design and social media marketing.",
     "publisher": {
       "@type": "Organization",
       "name": "QuolyTech"
@@ -91,8 +94,8 @@ export default function Home() {
   return (
     <div>
       <SEOHead
-        title="QuolyTech | Web Development, AI Agents & Digital Solutions"
-        description="QuolyTech is a digital technology studio in Tiranë, Albania building websites, mobile apps, AI agents and custom digital solutions for businesses."
+        title="QuolyTech | Technology & Design Agency in Tiranë, Albania"
+        description="QuolyTech is a technology & design agency in Tiranë, Albania: AI agents, startup & SaaS development, web & mobile apps, UI/UX design and social media marketing."
         canonicalPath="/"
         jsonLd={[organizationJsonLd, webSiteJsonLd]}
       />
@@ -103,12 +106,17 @@ export default function Home() {
           className="hero-island"
           style={{ scale: heroScale, opacity: heroOpacity }}
         >
-          {/* Kinetic Background Texture */}
-          <img 
-            src="/hero-texture.png" 
-            alt="QuolyTech digital technology studio background texture" 
-            className="hero-texture-bg"
-          />
+          {/* Background Video */}
+          <video 
+            className="hero-video-bg"
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            preload="auto"
+          >
+            <source src="/qtech-bg-video.mp4" type="video/mp4" />
+          </video>
 
           {/* Swiss Crosshair Grid Overlay */}
           <div className="hero-crosshair-grid">
@@ -128,11 +136,8 @@ export default function Home() {
                   initial="hidden"
                   animate="visible"
                 >
-                  {titleText.split('').map((char, index) => (
-                    <motion.span key={index} variants={letterVariants}>
-                      {char}
-                    </motion.span>
-                  ))}
+                  {/* Kept as one text run so the font's kerning applies */}
+                  <motion.span variants={letterVariants}>{titleText}</motion.span>
                   <motion.sup variants={letterVariants}>®</motion.sup>
                 </motion.h1>
                 
@@ -142,50 +147,35 @@ export default function Home() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.35, duration: 0.5 }}
                 >
-                  Technology Studio
+                  Studio
                 </motion.span>
               </div>
-
-              <motion.div 
-                className="hero-services-column"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-              >
-                <div className="hero-service-item">Web Development</div>
-                <div className="hero-service-item">AI Agent Development</div>
-                <div className="hero-service-item">Mobile App Development</div>
-                <div className="hero-service-item">Custom Software & SEO</div>
-              </motion.div>
             </div>
 
             {/* Bottom Echelon Layout */}
             <div className="hero-bottom-echelon">
-              <motion.div 
+              <motion.div
                 className="hero-statement-col"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
                 <p className="hero-statement-text">
-                  QuolyTech is a digital technology studio based in <strong>Tiranë, Albania</strong>, building websites, mobile applications, AI agents and custom digital solutions for businesses locally and internationally.
+                  No generic websites. No empty <strong>marketing promises.</strong> Just tools and strategies that help your business grow and your brand shine.
                 </p>
-
-                <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
-                  <Link to="/contact" className="hero-action-cta-btn">
-                    <span>Start a Project</span>
-                    <ArrowUpRight size={16} />
-                  </Link>
-
-                  <Link to="/projects" style={{ color: 'rgba(255,255,255,0.7)', fontSize: '14px', fontWeight: '600', textDecoration: 'none', padding: '10px 16px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.15)' }}>
-                    Explore Our Work
-                  </Link>
-                </div>
               </motion.div>
 
-              <div className="hero-copyright-col">
-                © QuolyTech • Tiranë, Albania
-              </div>
+              <motion.div
+                className="hero-services-column"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
+                <div className="hero-service-item">Branding and Identity</div>
+                <div className="hero-service-item">Social Media Marketing</div>
+                <div className="hero-service-item">Web Design and Development</div>
+                <div className="hero-service-item">SEO Optimization</div>
+              </motion.div>
             </div>
           </div>
         </motion.section>

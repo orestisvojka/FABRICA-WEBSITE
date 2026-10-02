@@ -1,44 +1,48 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Crown, Terminal, Palette, Layout } from 'lucide-react';
+import { Crown, Terminal, Layers, Users } from 'lucide-react';
 
 const teamMembers = [
   {
-    id: 'lauren',
-    slug: 'lauren-thompson',
-    name: 'Lauren Thompson',
-    role: 'Team Lead',
-    subtext: 'with creative vision',
-    description: 'Lead strategist with exceptional vision to create seamless digital products and guide cross-functional alignment.',
-    Icon: Crown
+    id: 'oresti',
+    slug: 'oresti-vojka',
+    name: 'Oresti Vojka',
+    role: 'CEO',
+    subtext: 'steering company vision & strategy',
+    description: 'Founder and Chief Executive Officer spearheading strategic tech vision, enterprise partnerships, and high-ROI digital systems.',
+    Icon: Crown,
+    color: '#d97706'
   },
   {
-    id: 'michael',
-    slug: 'michael-wilson',
-    name: 'Michael Wilson',
-    role: 'Full Stack Developer',
-    subtext: 'building core tech',
-    description: 'Full-stack architect building robust web systems, high-performance APIs, and scalable infrastructure engines.',
-    Icon: Terminal
+    id: 'kris',
+    slug: 'kris-sipri',
+    name: 'Kris Sipri',
+    role: 'Programmer',
+    subtext: 'building core backend & cloud architecture',
+    description: 'Lead systems and backend engineer architecting high-concurrency APIs, resilient microservices, and database infrastructure.',
+    Icon: Terminal,
+    color: '#10b981'
   },
   {
-    id: 'sarah',
-    slug: 'sarah-johnson',
-    name: 'Sarah Johnson',
-    role: 'Creative Director',
-    subtext: 'leading brand identity',
-    description: 'Creative director crafting bold visual aesthetics, memorable brand identities, and high-impact digital storytelling.',
-    Icon: Palette
+    id: 'daniel',
+    slug: 'daniel-kademi',
+    name: 'Daniel Kademi',
+    role: 'Programmer',
+    subtext: 'crafting interactive 3D & 60fps interfaces',
+    description: 'Frontend and creative tech programmer developing reactive React apps, WebGL shaders, kinetic physics, and responsive design systems.',
+    Icon: Layers,
+    color: '#8b5cf6'
   },
   {
-    id: 'christopher',
-    slug: 'christopher-miller',
-    name: 'Christopher Miller',
-    role: 'UX/UI Designer',
-    subtext: 'keeping everything on track',
-    description: 'UX/UI designer focused on intuitive interfaces, fluid micro-interactions, and keeping every user workflow on track.',
-    Icon: Layout
+    id: 'henri',
+    slug: 'henri-bajramaj',
+    name: 'Henri Bajramaj',
+    role: 'Client Manager',
+    subtext: 'guiding client success & project delivery',
+    description: 'Client Manager and partnership lead orchestrating transparent milestone delivery, executive communication, and post-launch account growth.',
+    Icon: Users,
+    color: '#3b82f6'
   }
 ];
 

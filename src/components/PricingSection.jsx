@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useInView, useScroll, useTransform, animate, useReducedMotion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { ShieldCheck, Sparkles, Users, MessageSquare, ArrowUpRight } from 'lucide-react';
 
-function AnimatedPrice({ value, prefix = '$', suffix = '/project' }) {
+function AnimatedPrice({ value, prefix = '€', suffix = '/project' }) {
   const nodeRef = useRef(null);
   const prevValRef = useRef(value);
   const shouldReduceMotion = useReducedMotion();
@@ -11,12 +12,18 @@ function AnimatedPrice({ value, prefix = '$', suffix = '/project' }) {
     const node = nodeRef.current;
     if (!node) return;
 
+    if (typeof value !== 'number') {
+      node.textContent = value;
+      return;
+    }
+
     if (shouldReduceMotion) {
       node.textContent = `${prefix}${value.toLocaleString()}`;
       return;
     }
 
-    const controls = animate(prevValRef.current, value, {
+    const startVal = typeof prevValRef.current === 'number' ? prevValRef.current : 0;
+    const controls = animate(startVal, value, {
       duration: 0.8,
       ease: [0.16, 1, 0.3, 1],
       onUpdate(latest) {
@@ -28,8 +35,18 @@ function AnimatedPrice({ value, prefix = '$', suffix = '/project' }) {
     return () => controls.stop();
   }, [value, prefix, shouldReduceMotion]);
 
+  if (typeof value !== 'number') {
+    return (
+      <span className="pricing-num-display pricing-custom-display">
+        <span>{value}</span>
+        <span className="pricing-suffix">{suffix}</span>
+      </span>
+    );
+  }
+
   return (
     <span className="pricing-num-display">
+      <span className="pricing-from-prefix">from </span>
       <span ref={nodeRef}>{prefix}{value.toLocaleString()}</span>
       <span className="pricing-suffix">{suffix}</span>
     </span>
@@ -38,7 +55,8 @@ function AnimatedPrice({ value, prefix = '$', suffix = '/project' }) {
 
 export default function PricingSection() {
   const navigate = useNavigate();
-  const [pricingMode, setPricingMode] = useState('project'); // 'project' | 'monthly'
+  // 'starter' (from €500) | 'team' (Custom / Open for Discussion)
+  const [pricingMode, setPricingMode] = useState('starter');
   const [addOnActive, setAddOnActive] = useState(false);
 
   const containerRef = useRef(null);
@@ -51,8 +69,9 @@ export default function PricingSection() {
 
   const islandScale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.97, 1, 1, 0.97]);
 
-  const currentPrice = pricingMode === 'project' ? 2490 : 4500;
-  const currentSuffix = pricingMode === 'project' ? '/project' : '/monthly';
+  const isStarter = pricingMode === 'starter';
+  const basePrice = 500;
+  const addOnPrice = 250;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -106,7 +125,7 @@ export default function PricingSection() {
             <div className="pricing-header-grid">
               <motion.div variants={itemVariants} className="pricing-badge-pill">
                 <span className="pricing-badge-plus">+</span>
-                <span className="pricing-badge-text">Simple pricing</span>
+                <span className="pricing-badge-text">Transparent Investment</span>
               </motion.div>
 
               <motion.div variants={itemVariants} className="pricing-headline-box">
@@ -115,11 +134,11 @@ export default function PricingSection() {
                 {/* Global Interactive Toggle Pill */}
                 <div className="pricing-mode-toggle">
                   <button
-                    className={`pricing-toggle-btn ${pricingMode === 'project' ? 'active' : ''}`}
-                    onClick={() => setPricingMode('project')}
+                    className={`pricing-toggle-btn ${pricingMode === 'starter' ? 'active' : ''}`}
+                    onClick={() => setPricingMode('starter')}
                   >
-                    Per project
-                    {pricingMode === 'project' && (
+                    <span>Starter Builds (from €500)</span>
+                    {pricingMode === 'starter' && (
                       <motion.div 
                         layoutId="activePricingPill" 
                         className="pricing-active-indicator"
@@ -129,11 +148,11 @@ export default function PricingSection() {
                   </button>
 
                   <button
-                    className={`pricing-toggle-btn ${pricingMode === 'monthly' ? 'active' : ''}`}
-                    onClick={() => setPricingMode('monthly')}
+                    className={`pricing-toggle-btn ${pricingMode === 'team' ? 'active' : ''}`}
+                    onClick={() => setPricingMode('team')}
                   >
-                    Monthly
-                    {pricingMode === 'monthly' && (
+                    <span>Dedicated Team / Custom Scope</span>
+                    {pricingMode === 'team' && (
                       <motion.div 
                         layoutId="activePricingPill" 
                         className="pricing-active-indicator"
@@ -154,19 +173,22 @@ export default function PricingSection() {
                 {...cardHoverProps}
               >
                 <div className="pricing-addon-top">
-                  <h3 className="pricing-addon-title">Want more traffic and leads?</h3>
+                  <h3 className="pricing-addon-title">Want more traffic and conversion?</h3>
                   <p className="pricing-addon-desc">
-                    Add marketing and SEO tools aligned with your goals.
+                    Add full search engine optimization, semantic schema, and conversion tracking aligned with your business goals.
                   </p>
                 </div>
 
                 <div className="pricing-addon-bottom">
-                  <span className="pricing-addon-price">+$1,490</span>
+                  <span className="pricing-addon-price">+€{addOnPrice}</span>
                   
                   {/* Interactive Toggle Switch */}
                   <div 
                     className={`pricing-switch-track ${addOnActive ? 'switch-on' : ''}`}
                     onClick={() => setAddOnActive(!addOnActive)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label="Toggle SEO & Growth add-on"
                   >
                     <motion.div 
                       className="pricing-switch-knob"
@@ -186,27 +208,53 @@ export default function PricingSection() {
                 {/* Top Compartment */}
                 <div className="pricing-main-top">
                   <div className="pricing-price-col">
-                    <AnimatedPrice 
-                      value={currentPrice + (addOnActive ? 1490 : 0)} 
-                      prefix="$" 
-                      suffix={currentSuffix} 
-                    />
+                    {isStarter ? (
+                      <AnimatedPrice 
+                        value={basePrice + (addOnActive ? addOnPrice : 0)} 
+                        prefix="€" 
+                        suffix="/project & up" 
+                      />
+                    ) : (
+                      <div className="pricing-discuss-wrap">
+                        <span className="pricing-discuss-heading">Team Scope</span>
+                        <span className="pricing-discuss-sub">Open for Discussion</span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="pricing-features-col">
                     <ul className="pricing-feature-list">
-                      <li>
-                        <span className="pricing-feature-dot">•</span>
-                        <span>Homepage and up to 5 inner pages</span>
-                      </li>
-                      <li>
-                        <span className="pricing-feature-dot">•</span>
-                        <span>Design and Development</span>
-                      </li>
-                      <li>
-                        <span className="pricing-feature-dot">•</span>
-                        <span>Mobile Optimized Design</span>
-                      </li>
+                      {isStarter ? (
+                        <>
+                          <li>
+                            <span className="pricing-feature-dot">•</span>
+                            <span>Starts from <strong>€500</strong> for landing page & core web presence</span>
+                          </li>
+                          <li>
+                            <span className="pricing-feature-dot">•</span>
+                            <span>Modern custom React / Next.js architecture & UI</span>
+                          </li>
+                          <li>
+                            <span className="pricing-feature-dot">•</span>
+                            <span>Sub-second mobile optimization & Core Web Vitals</span>
+                          </li>
+                        </>
+                      ) : (
+                        <>
+                          <li>
+                            <span className="pricing-feature-dot">•</span>
+                            <span>Dedicated engineering team allocation (Frontend, Backend, UI/UX)</span>
+                          </li>
+                          <li>
+                            <span className="pricing-feature-dot">•</span>
+                            <span>Tailored architecture for complex SaaS, AI pipelines & mobile apps</span>
+                          </li>
+                          <li>
+                            <span className="pricing-feature-dot">•</span>
+                            <span>Flexible team pricing & sprint milestones open for discussion</span>
+                          </li>
+                        </>
+                      )}
                     </ul>
                   </div>
                 </div>
@@ -214,17 +262,22 @@ export default function PricingSection() {
                 {/* Bottom Compartment (1px Divider Line Separation) */}
                 <div className="pricing-main-bottom">
                   <div className="pricing-delivery-info">
-                    <span className="pricing-delivery-label">Delivery time</span>
-                    <span className="pricing-delivery-val">2-3 weeks</span>
+                    <span className="pricing-delivery-label">
+                      {isStarter ? "Delivery time" : "Engagement model"}
+                    </span>
+                    <span className="pricing-delivery-val">
+                      {isStarter ? "1-2 weeks sprint" : "Custom Team Agreement"}
+                    </span>
                   </div>
 
                   <motion.button 
                     className="pricing-cta-btn"
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    onClick={() => navigate('/contact')}
+                    onClick={() => navigate('/contact?topic=' + (isStarter ? 'starter-project' : 'team-discussion'))}
                   >
-                    Get in touch
+                    <span>{isStarter ? "Start from €500" : "Discuss Team Scope"}</span>
+                    <ArrowUpRight size={15} />
                   </motion.button>
                 </div>
               </motion.div>
@@ -233,14 +286,14 @@ export default function PricingSection() {
             {/* Bottom Subtext & Client Success Manager Lockup */}
             <motion.div variants={itemVariants} className="pricing-footer-lockup">
               <p className="pricing-footer-text">
-                <strong>Add marketing, SEO, or content creation</strong>—flexible tools to strengthen your project. We'll shape a solution that fits your business, not ours.
+                <strong>Base web projects start from €500 and up.</strong> For larger platforms, custom enterprise SaaS, and multi-engineer teams, pricing is customized and completely open for discussion based on your specific requirements.
               </p>
 
-              <div className="pricing-manager-stamp">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-                <span>logoipsum Client Success Manager</span>
+              <div className="pricing-manager-stamp" onClick={() => navigate('/team/henri-bajramaj')} style={{ cursor: 'pointer' }}>
+                <div className="pricing-manager-icon-box">
+                  <ShieldCheck size={18} color="#10b981" />
+                </div>
+                <span>Henri Bajramaj — Client Success & Team Partnerships</span>
               </div>
             </motion.div>
           </motion.div>

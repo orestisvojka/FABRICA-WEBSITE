@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { HeadContext } from './HeadContext';
 
 export default function SEOHead({
-  title = "QuolyTech | Web Development, AI Agents & Digital Solutions",
-  description = "QuolyTech is a digital technology studio in Tiranë, Albania building websites, mobile apps, AI agents and custom digital solutions for businesses.",
+  title = "QuolyTech | Technology & Design Agency in Tiranë, Albania",
+  description = "QuolyTech is a technology & design agency in Tiranë, Albania: AI agents, startup & SaaS development, web & mobile apps, UI/UX design and social media marketing.",
   canonicalPath = "",
   ogType = "website",
   ogImage = "https://quolytech.com/quolytech-logo.jpg",
@@ -10,6 +11,11 @@ export default function SEOHead({
 }) {
   const baseUrl = "https://quolytech.com";
   const fullCanonicalUrl = `${baseUrl}${canonicalPath.startsWith('/') ? canonicalPath : '/' + canonicalPath}`;
+
+  const headContext = useContext(HeadContext);
+  if (headContext) {
+    Object.assign(headContext, { title, description, canonical: fullCanonicalUrl, ogType, ogImage, jsonLd });
+  }
 
   useEffect(() => {
     // Update Document Title

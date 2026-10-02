@@ -4,85 +4,13 @@ import { motion } from 'framer-motion';
 import { projects } from '../data/projects';
 import SEOHead from '../components/SEOHead';
 import ContactSection from '../components/ContactSection';
-
-const getProjectLogo = (slug, title) => {
-  switch (slug) {
-    case 'boltshift':
-      return (
-        <div className="pm-logo-lockup">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <circle cx="12" cy="12" r="11" fill="currentColor" fillOpacity="0.2"/>
-            <path d="M13 2L4 14H11L9 22L20 10H12L13 2Z" fill="#FFFFFF"/>
-          </svg>
-          <span>Boltshift</span>
-        </div>
-      );
-    case 'ephemeral':
-      return (
-        <div className="pm-logo-lockup">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-          </svg>
-          <span>Ephemeral</span>
-        </div>
-      );
-    case 'powersurge':
-      return (
-        <div className="pm-logo-lockup">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <rect x="6" y="4" width="12" height="16" rx="2" stroke="#FFFFFF" strokeWidth="2" fill="none"/>
-            <rect x="9" y="1" width="6" height="3" rx="1" fill="#FFFFFF"/>
-            <rect x="9" y="8" width="6" height="8" rx="1" fill="#FFFFFF"/>
-          </svg>
-          <span>Powersurge</span>
-        </div>
-      );
-    case 'mastermail':
-      return (
-        <div className="pm-logo-lockup">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L17 7L12 12L7 7L12 2Z" fill="#FFFFFF"/>
-            <path d="M12 12L17 17L12 22L7 17L12 12Z" fill="#FFFFFF"/>
-            <path d="M2 12L7 7L12 12L7 17L2 12Z" fill="#FFFFFF"/>
-            <path d="M22 12L17 7L12 12L17 17L22 12Z" fill="#FFFFFF"/>
-          </svg>
-          <span>Mastermail</span>
-        </div>
-      );
-    case 'warpspeed':
-      return (
-        <div className="pm-logo-lockup">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5">
-            <path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.356-8-5.096 0-5.096 8 0 8 5.223 0 7.261-8 12.356-8z"/>
-          </svg>
-          <span>Warpspeed</span>
-        </div>
-      );
-    case 'cloudwatch':
-      return (
-        <div className="pm-logo-lockup">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-            <circle cx="9" cy="12" r="6" fill="#FFFFFF" fillOpacity="0.8"/>
-            <circle cx="15" cy="12" r="6" fill="#FFFFFF"/>
-          </svg>
-          <span>CloudWatch</span>
-        </div>
-      );
-    default:
-      return (
-        <div className="pm-logo-lockup">
-          <span>{title}</span>
-        </div>
-      );
-  }
-};
+import { getProjectLogo } from '../components/ProjectLogos';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  // Find matching project by slug, id, or alias, or default to boltshift
+  // Find matching project by slug, id, or alias, or default to first project
   const normalizedSlug = slug?.toLowerCase();
   const project = projects.find(
     (p) =>
@@ -151,17 +79,36 @@ export default function ProjectDetail() {
         jsonLd={breadcrumbJsonLd}
       />
       <div className="project-detail-container">
-        {/* Title Section */}
+        {/* Title Section with Direct Live Project Button */}
         <section className="project-detail-hero">
-          <motion.h1
-            className="project-detail-main-title"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.05 }}
-            transition={{ duration: 0.75, ease: [0.25, 1, 0.5, 1] }}
-          >
-            {project.title}.
-          </motion.h1>
+          <div className="project-detail-title-row">
+            <motion.h1
+              className="project-detail-main-title"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.05 }}
+              transition={{ duration: 0.75, ease: [0.25, 1, 0.5, 1] }}
+            >
+              {project.title}.
+            </motion.h1>
+
+            <motion.a
+              href={project.liveUrl || project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-visit-pill-btn project-hero-live-btn"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 350, damping: 20 }}
+            >
+              <span className="project-card-live-dot" />
+              <span>Visit Live Website</span>
+              <span className="project-btn-arrow">↗</span>
+            </motion.a>
+          </div>
 
           {/* Overview Grid */}
           <motion.div
@@ -222,9 +169,9 @@ export default function ProjectDetail() {
               <motion.div variants={itemVariants} className="project-spec-row">
                 <span className="project-spec-label">Website</span>
                 <motion.a
-                  href={project.url || 'https://quolytech.com'}
+                  href={project.liveUrl || project.url || 'https://quolytech.com'}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="project-visit-pill-btn"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.96 }}
@@ -281,9 +228,15 @@ export default function ProjectDetail() {
           >
             <div className="project-main-showcase-wrapper">
               <motion.img
-                src="/project-detail-interface.png"
+                src={project.heroImage}
                 alt={`${project.title} Web Interface Showcase`}
                 className="project-main-showcase-img"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  if (project.fallbackImage) {
+                    e.target.src = project.fallbackImage;
+                  }
+                }}
                 variants={{
                   initial: { scale: 1 },
                   hover: { scale: 1.04 }
@@ -293,68 +246,37 @@ export default function ProjectDetail() {
             </div>
           </motion.div>
 
-          {/* Showcase Gallery Grid (3 Mockup Shots) */}
-          <div className="project-gallery-stack">
-            <motion.div
-              className="project-gallery-item-card"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.05 }}
-              transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
-              whileHover="hover"
-            >
-              <motion.img
-                src="/project-detail-card-stacks.png"
-                alt="Business Card Stacks Mockup"
-                className="project-gallery-img"
-                variants={{
-                  initial: { scale: 1 },
-                  hover: { scale: 1.04 }
-                }}
-                transition={{ duration: 0.5 }}
-              />
-            </motion.div>
-
-            <motion.div
-              className="project-gallery-item-card"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.05 }}
-              transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
-              whileHover="hover"
-            >
-              <motion.img
-                src="/project-detail-wood.png"
-                alt="Oak Wood Cards Mockup"
-                className="project-gallery-img"
-                variants={{
-                  initial: { scale: 1 },
-                  hover: { scale: 1.04 }
-                }}
-                transition={{ duration: 0.5 }}
-              />
-            </motion.div>
-
-            <motion.div
-              className="project-gallery-item-card"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.05 }}
-              transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
-              whileHover="hover"
-            >
-              <motion.img
-                src="/project-detail-phone.png"
-                alt="Smartphone Slat Backdrop Mockup"
-                className="project-gallery-img"
-                variants={{
-                  initial: { scale: 1 },
-                  hover: { scale: 1.04 }
-                }}
-                transition={{ duration: 0.5 }}
-              />
-            </motion.div>
-          </div>
+          {/* Showcase Gallery Stack (Real Live Screenshots) */}
+          {project.gallery && project.gallery.length > 0 && (
+            <div className="project-gallery-stack">
+              {project.gallery.map((imgSrc, idx) => (
+                <motion.div
+                  key={idx}
+                  className="project-gallery-item-card"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.05 }}
+                  transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.25, 1, 0.5, 1] }}
+                  whileHover="hover"
+                >
+                  <motion.img
+                    src={imgSrc}
+                    alt={`${project.title} Live Interface View ${idx + 1}`}
+                    className="project-gallery-img"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      if (project.heroImage) e.target.src = project.heroImage;
+                    }}
+                    variants={{
+                      initial: { scale: 1 },
+                      hover: { scale: 1.04 }
+                    }}
+                    transition={{ duration: 0.5 }}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          )}
 
           {/* Next Projects Section */}
           <section className="project-next-section">
@@ -362,7 +284,7 @@ export default function ProjectDetail() {
               <div className="project-next-left">
                 <span className="project-brand-tag">QuolyTech®</span>
                 <h2 className="project-next-title">Next projects.</h2>
-                <span className="project-year-stamp">(2016-25©)</span>
+                <span className="project-year-stamp">(2024-26©)</span>
               </div>
 
               <motion.button
@@ -399,8 +321,23 @@ export default function ProjectDetail() {
                   whileHover="hover"
                 >
                   <div className="project-card-top-bar">
-                    <span className="project-card-title">{p.title}</span>
-                    <span className="project-card-year">/{p.year}</span>
+                    <div className="project-card-title-group">
+                      <span className="project-card-title">{p.title}</span>
+                      <span className="project-card-year">/{p.year}</span>
+                    </div>
+
+                    <a
+                      href={p.liveUrl || p.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-card-live-btn"
+                      onClick={(e) => e.stopPropagation()}
+                      title={`Visit live site: ${p.title}`}
+                    >
+                      <span className="project-card-live-dot" />
+                      <span>Live Site</span>
+                      <span className="project-card-arrow">↗</span>
+                    </a>
                   </div>
 
                   <div className="project-card-img-wrapper">
@@ -424,6 +361,13 @@ export default function ProjectDetail() {
                     <div className="pm-logo-overlay">
                       {getProjectLogo(p.slug, p.title)}
                     </div>
+                  </div>
+
+                  <div className="project-card-bottom-bar">
+                    <span className="project-card-category">{p.category}</span>
+                    <span className="project-card-view-case">
+                      Case Study &rarr;
+                    </span>
                   </div>
                 </motion.div>
               ))}

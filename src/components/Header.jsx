@@ -11,43 +11,49 @@ export default function Header({ onOpenAuth }) {
   return (
     <>
       <header className="header">
-        <Link to="/" className="logo">
-          QuolyTech<sup>®</sup>
-        </Link>
+        <div className="header-pill">
+          <Link to="/" className="logo" aria-label="QuolyTech home">
+            <img src="/favicon.png" alt="QuolyTech" className="header-pill-logo" />
+          </Link>
 
-        <nav className="nav-links">
-          <Link to="/studio" className={`nav-link ${isActive('/studio') ? 'active' : ''}`}>
-            Studio
-          </Link>
-          <Link to="/projects" className={`nav-link ${isActive('/projects') ? 'active' : ''}`}>
-            Projects
-          </Link>
-          <Link to="/blog" className={`nav-link ${isActive('/blog') ? 'active' : ''}`}>
-            Blog
-          </Link>
-          <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>
-            Contact
-          </Link>
-        </nav>
+          <nav className="nav-links">
+            <Link to="/studio" className={`nav-link ${isActive('/studio') ? 'active' : ''}`}>
+              Studio
+            </Link>
+            <Link to="/projects" className={`nav-link ${isActive('/projects') ? 'active' : ''}`}>
+              Projects
+            </Link>
+            <Link to="/blog" className={`nav-link ${isActive('/blog') ? 'active' : ''}`}>
+              Blog
+            </Link>
+            <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>
+              Contact
+            </Link>
+          </nav>
 
-        {/* Right Header Actions */}
-        <div className="header-actions">
-          <button 
-            className="header-auth-btn"
-            onClick={onOpenAuth}
-            type="button"
-          >
-            Log in
-          </button>
+          {/* Right Header Actions */}
+          <div className="header-actions">
+            <Link to="/contact" className="header-talk-btn">
+              Let's talk
+            </Link>
 
-          <button 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="hamburger-toggle"
-            aria-label="Toggle Navigation"
-          >
-            <span className="hamburger-line"></span>
-            <span className="hamburger-line"></span>
-          </button>
+            <button
+              className="header-auth-btn"
+              onClick={onOpenAuth}
+              type="button"
+            >
+              Log in
+            </button>
+
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="hamburger-toggle"
+              aria-label="Toggle Navigation"
+            >
+              <span className="hamburger-line"></span>
+              <span className="hamburger-line"></span>
+            </button>
+          </div>
         </div>
       </header>
 

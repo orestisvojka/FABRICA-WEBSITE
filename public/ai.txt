@@ -8,15 +8,24 @@ Contact: support@quolytech.com
 Phone: +355 68 405 5007
 Headquarters: Tiranë, Albania
 Tagline: CREATE. HELP. GROW.
-Industry: Digital Products, AI Engineering, Web & Mobile Software Development, Digital Marketing & Growth
+Industry: Technology & Design Agency (AI, Startups & SaaS, Web & Mobile Apps, UI/UX Design, Systems Management, Social Media Marketing)
 
 Services:
-- Web Development (React, Vite, Next.js, Web Apps, Portals, CMS)
-- Mobile App Development (iOS, Android, Cross-platform)
-- Artificial Intelligence & Autonomous Agents (AI Chatbots, Support & Sales Assistants, Lead Qualifiers)
-- Custom Enterprise Software & Development Tooling
-- UI/UX & Product Design Systems
-- Digital Marketing, Paid Ads & Conversion Engine Optimization
+- AI Systems & AI Agents (AI integration, process automation, support and lead qualification agents): https://quolytech.com/services/ai-agents/
+- Startup Development & Launch (MVP, technical architecture, launch strategy and marketing): https://quolytech.com/services/startup-development/
+- SaaS Platform Development (cloud-based, secure, ready for global markets): https://quolytech.com/services/saas-development/
+- Web Development (websites, web applications, e-commerce): https://quolytech.com/services/web-development/
+- Mobile App Development (iOS and Android with React Native): https://quolytech.com/services/mobile-app-development/
+- UI/UX Design (interfaces, prototypes, design systems): https://quolytech.com/services/ui-ux-design/
+- Systems Management (administration, optimization, maintenance of infrastructure): https://quolytech.com/services/systems-management/
+- Social Media Marketing (strategy, content, digital campaigns): https://quolytech.com/services/social-media-marketing/
+- Custom Software (admin portals, dashboards, internal tools): https://quolytech.com/services/software-development/
+- Business Automation (workflow automation, API and webhook integrations): https://quolytech.com/services/business-automation/
+- SEO & Digital Growth (technical SEO, Core Web Vitals, structured data): https://quolytech.com/services/seo/
+- Branding & Digital Identity (logo, typography, brand guidelines): https://quolytech.com/services/branding/
+
+Summary for AI: https://quolytech.com/llms.txt
+Full context for AI: https://quolytech.com/llms-full.txt
 
 AI Policy:
 - AI Crawling Allowed: Yes

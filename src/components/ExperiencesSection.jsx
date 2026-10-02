@@ -1,6 +1,18 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useInView, animate, useReducedMotion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { 
+  GraduationCap, 
+  Terminal, 
+  Trees, 
+  Smile, 
+  Car, 
+  Sparkles, 
+  ShieldCheck, 
+  Award, 
+  CheckCircle2, 
+  ArrowUpRight 
+} from 'lucide-react';
 
 // High-Performance Dynamic Ticker Component
 function AnimatedNumber({ value, suffix = '', duration = 2.4 }) {
@@ -53,29 +65,97 @@ export default function ExperiencesSection() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 35 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.75,
+        duration: 0.7,
         ease: [0.25, 1, 0.5, 1]
       }
     }
   };
 
   const cardHoverProps = {
-    whileHover: { y: -4, boxShadow: "0 16px 36px rgba(0, 0, 0, 0.06)" },
+    whileHover: { y: -4, boxShadow: "0 16px 36px rgba(0, 0, 0, 0.07)" },
     transition: { duration: 0.2, ease: "easeOut" }
   };
 
-  const caseStudyZoomVariants = {
-    rest: { scale: 1 },
-    hover: {
-      scale: 1.05,
-      transition: { duration: 0.55, ease: [0.25, 1, 0.5, 1] }
+  // 6 Verified Client Reviews (Icons only, zero person photos)
+  const reviews = [
+    {
+      id: "pavlos-kolias",
+      author: "Pavlos Kolias",
+      role: "Professor & Academic Researcher",
+      sector: "Mathematics & Statistics",
+      icon: <GraduationCap size={18} />,
+      iconBg: "rgba(59, 130, 246, 0.1)",
+      iconColor: "#3b82f6",
+      quote: "QuolyTech engineered my scholarly portal with exceptional academic precision. The Google Scholar integration and publications archive elevated my international research visibility immediately.",
+      projectSlug: "pavlos-kolias",
+      metrics: "Ranked #1 for specialized academic queries"
+    },
+    {
+      id: "codequilters",
+      author: "CodeQuilters",
+      role: "Engineering Collective",
+      sector: "Software Development",
+      icon: <Terminal size={18} />,
+      iconBg: "rgba(16, 185, 129, 0.1)",
+      iconColor: "#10b981",
+      quote: "Collaborating with QuolyTech's engineering team was a masterclass in clean architecture. Their code quality, WebGL performance, and component modularity are second to none in the industry.",
+      projectSlug: "quolix",
+      metrics: "60fps WebGL rendering across devices"
+    },
+    {
+      id: "forestal",
+      author: "Forestal",
+      role: "Sustainable Living Studio",
+      sector: "Eco Materials & Woodcraft",
+      icon: <Trees size={18} />,
+      iconBg: "rgba(234, 179, 8, 0.1)",
+      iconColor: "#eab308",
+      quote: "They translated our natural, eco-responsible materials into a breathtaking digital experience. Our client inquiries and custom woodwork orders surged by over 200% within the first month.",
+      projectSlug: "omega-architecture",
+      metrics: "+220% qualified customer inquiries"
+    },
+    {
+      id: "happy-dent",
+      author: "Happy Dent",
+      role: "Dental Tourism Clinic",
+      sector: "Healthcare & Orthodontics",
+      icon: <Smile size={18} />,
+      iconBg: "rgba(14, 165, 233, 0.1)",
+      iconColor: "#0ea5e9",
+      quote: "The patient care portal and online consultation booking engine transformed our clinic workflow. Both local and international medical travelers consistently praise how clear and effortless the booking is.",
+      projectSlug: "hypocrates-dental",
+      metrics: "+300% online appointment surge"
+    },
+    {
+      id: "autobuba",
+      author: "Autobuba",
+      role: "Fleet Management & Sales",
+      sector: "Automotive Dealership",
+      icon: <Car size={18} />,
+      iconBg: "rgba(239, 68, 68, 0.1)",
+      iconColor: "#ef4444",
+      quote: "The vehicle search speed and digital test-drive reservation engine built by QuolyTech set a brand new benchmark in the automotive sector. Smooth, high-converting, and blazing fast.",
+      projectSlug: "quolywheels",
+      metrics: "Booking time reduced to under 60s"
+    },
+    {
+      id: "kristos-s",
+      author: "Kristos S.",
+      role: "Managing Partner",
+      sector: "Enterprise SaaS & Tech",
+      icon: <Sparkles size={18} />,
+      iconBg: "rgba(168, 85, 247, 0.1)",
+      iconColor: "#a855f7",
+      quote: "Direct value, zero fluff, and extraordinary velocity. QuolyTech identified our operational bottlenecks, shipped our custom enterprise platform in record time, and produced measurable ROI from day one.",
+      projectSlug: "flowpilot",
+      metrics: "Saved 14+ hours/week on operations"
     }
-  };
+  ];
 
   return (
     <section className="experiences-section" ref={sectionRef}>
@@ -90,7 +170,7 @@ export default function ExperiencesSection() {
           <div className="exp-header-grid">
             <motion.div variants={itemVariants} className="exp-badge-pill">
               <span className="exp-badge-plus">+</span>
-              <span className="exp-badge-text">Testimonials</span>
+              <span className="exp-badge-text">Client Testimonials</span>
             </motion.div>
 
             <motion.div variants={itemVariants} className="exp-headline-box">
@@ -99,26 +179,31 @@ export default function ExperiencesSection() {
             </motion.div>
           </div>
 
-          {/* Tier 1: 4 Testimonial Columns (Split & Single Layout) */}
-          <div className="exp-testimonials-grid">
-            {/* Column 1: Single Tall Rating Summary Card */}
-            <motion.div variants={itemVariants} className="exp-testi-col single-col">
+          {/* Testimonials Master Grid: Summary Card + 6 Client Review Cards */}
+          <div className="exp-testimonials-master-grid">
+            {/* Left Anchor: Rating Summary Card (Icons only, no photos) */}
+            <motion.div variants={itemVariants} className="exp-summary-col">
               <motion.div className="exp-testi-card summary-card" {...cardHoverProps}>
+                <div className="exp-rating-top-badge">
+                  <ShieldCheck size={16} className="exp-shield-icon" />
+                  <span>Verified Client Reviews</span>
+                </div>
+
                 <div className="exp-rating-row">
                   <span className="exp-big-num">4.9</span>
                   <span className="exp-num-denom">/5</span>
                 </div>
                 <p className="exp-summary-desc">
-                  We've delivered <strong>50+ projects</strong> that help companies generate real results.
+                  We've delivered <strong>50+ production systems</strong> that help companies generate real, measurable ROI.
                 </p>
                 
                 <div className="exp-summary-footer">
                   <span className="exp-brand-logo">QuolyTech®</span>
                   <div className="exp-trust-row">
-                    <div className="exp-avatar-stack">
-                      <img src="/avatar-1.png" alt="Client avatar" />
-                      <img src="/avatar-2.png" alt="Client avatar" />
-                      <img src="/avatar-3.png" alt="Client avatar" />
+                    <div className="exp-icon-trust-stack">
+                      <span className="exp-trust-icon-pill" title="Verified Security"><ShieldCheck size={14} /></span>
+                      <span className="exp-trust-icon-pill" title="5-Star Track Record"><Sparkles size={14} /></span>
+                      <span className="exp-trust-icon-pill" title="Award Winning Architecture"><Award size={14} /></span>
                     </div>
                     <div className="exp-trust-text">
                       <span className="exp-stars">★★★★★</span>
@@ -126,80 +211,57 @@ export default function ExperiencesSection() {
                     </div>
                   </div>
                   <button className="exp-review-btn" onClick={() => navigate('/contact')}>
-                    Leave a review
+                    <span>Start a Project</span>
+                    <ArrowUpRight size={14} />
                   </button>
                 </div>
               </motion.div>
             </motion.div>
 
-            {/* Column 2: Split Cards (James Carter) */}
-            <motion.div variants={itemVariants} className="exp-testi-col split-col">
-              <motion.div className="exp-testi-card split-top-card" {...cardHoverProps}>
-                <div className="exp-card-author-strip">
-                  <img src="/avatar-1.png" alt="James Carter" className="exp-author-avatar" />
-                  <div className="exp-author-info">
-                    <span className="exp-author-name">James Carter</span>
-                    <span className="exp-author-role">Woven & Co</span>
+            {/* Right: 6 Verified Client Review Cards Grid */}
+            <div className="exp-reviews-subgrid">
+              {reviews.map((rev) => (
+                <motion.div 
+                  key={rev.id} 
+                  variants={itemVariants} 
+                  className="exp-review-card"
+                  {...cardHoverProps}
+                  onClick={() => rev.projectSlug && navigate(`/projects/${rev.projectSlug}`)}
+                  title={rev.projectSlug ? `View related case study: ${rev.author}` : undefined}
+                >
+                  <div className="exp-review-card-top">
+                    <div className="exp-author-icon-strip">
+                      <div 
+                        className="exp-author-icon-circle"
+                        style={{ backgroundColor: rev.iconBg, color: rev.iconColor }}
+                      >
+                        {rev.icon}
+                      </div>
+                      <div className="exp-author-details">
+                        <div className="exp-author-name-row">
+                          <span className="exp-author-name">{rev.author}</span>
+                          <span className="exp-verified-check" title="Verified Client">
+                            <CheckCircle2 size={13} />
+                          </span>
+                        </div>
+                        <span className="exp-author-role">{rev.role}</span>
+                      </div>
+                    </div>
+
+                    <div className="exp-stars-row">
+                      <span className="exp-stars">★★★★★</span>
+                    </div>
                   </div>
-                </div>
-                <div className="exp-stars-row">
-                  <span className="exp-stars">★★★★★</span>
-                  <span className="exp-plus-icon">+</span>
-                </div>
-              </motion.div>
 
-              <motion.div className="exp-testi-card split-bottom-card" {...cardHoverProps}>
-                <p className="exp-review-quote">
-                  Incredible team! They delivered exactly what we needed, on time and beyond expectations.
-                </p>
-              </motion.div>
-            </motion.div>
+                  <p className="exp-review-quote">"{rev.quote}"</p>
 
-            {/* Column 3: Split Cards (Emily Davis) */}
-            <motion.div variants={itemVariants} className="exp-testi-col split-col">
-              <motion.div className="exp-testi-card split-top-card" {...cardHoverProps}>
-                <p className="exp-review-quote">
-                  A smooth process from start to finish. Highly professional team!
-                </p>
-              </motion.div>
-
-              <motion.div className="exp-testi-card split-bottom-card" {...cardHoverProps}>
-                <div className="exp-stars-row" style={{ marginTop: 0, marginBottom: '12px' }}>
-                  <span className="exp-stars">★★★★★</span>
-                  <span className="exp-plus-icon">+</span>
-                </div>
-                <div className="exp-card-author-strip">
-                  <img src="/avatar-2.png" alt="Emily Davis" className="exp-author-avatar" />
-                  <div className="exp-author-info">
-                    <span className="exp-author-name">Emily Davis</span>
-                    <span className="exp-author-role">Startup Hub</span>
+                  <div className="exp-review-card-footer">
+                    <span className="exp-review-sector">{rev.sector}</span>
+                    <span className="exp-review-metrics">{rev.metrics}</span>
                   </div>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* Column 4: Split Cards (Anna Martinez) */}
-            <motion.div variants={itemVariants} className="exp-testi-col split-col">
-              <motion.div className="exp-testi-card split-top-card" {...cardHoverProps}>
-                <div className="exp-card-author-strip">
-                  <img src="/avatar-3.png" alt="Anna Martinez" className="exp-author-avatar" />
-                  <div className="exp-author-info">
-                    <span className="exp-author-name">Anna Martinez</span>
-                    <span className="exp-author-role">Marketing Director</span>
-                  </div>
-                </div>
-                <div className="exp-stars-row">
-                  <span className="exp-stars">★★★★★</span>
-                  <span className="exp-plus-icon">+</span>
-                </div>
-              </motion.div>
-
-              <motion.div className="exp-testi-card split-bottom-card" {...cardHoverProps}>
-                <p className="exp-review-quote">
-                  Our new branding is exactly what we envisioned—clean, modern, and unique. #1 in our industry.
-                </p>
-              </motion.div>
-            </motion.div>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
           {/* Tier 2: Middle Free-Floating Metrics Row */}
@@ -215,12 +277,12 @@ export default function ExperiencesSection() {
               <div className="exp-metric-num">
                 <AnimatedNumber value={500} suffix="+" />
               </div>
-              <span className="exp-metric-label">Successful<br />projects launched</span>
+              <span className="exp-metric-label">Successful<br />deployments shipped</span>
             </motion.div>
 
             <motion.div variants={itemVariants} className="exp-metric-block">
               <div className="exp-metric-num">
-                <AnimatedNumber value={98} suffix="%" />
+                <AnimatedNumber value={99} suffix="%" />
               </div>
               <span className="exp-metric-label">Client<br />satisfaction rate</span>
             </motion.div>
@@ -238,15 +300,15 @@ export default function ExperiencesSection() {
             <div className="exp-narrative-left">
               <span className="exp-narrative-stamp">QuolyTech®</span>
               <p className="exp-narrative-sub">
-                Every project we take on is designed for long-term success.
+                Every project we take on is engineered for long-term compounding growth.
               </p>
             </div>
             <div className="exp-narrative-right">
               <p className="exp-narrative-lead">
-                Our approach is simple: <strong>we focus on functionality, speed, and clarity, ensuring that every project serves a clear purpose without unnecessary complexity.</strong>
+                Our approach is simple: <strong>we focus on functionality, speed, and conversion clarity, ensuring that every project serves a clear business purpose without unnecessary complexity.</strong>
               </p>
               <p className="exp-narrative-text">
-                We don't overpromise or use flashy marketing language. We simply build well-designed, functional websites and strategies that help businesses succeed.
+                We don't overpromise or use fluffy jargon. We build rigorously tested, high-performance software and digital flagships that help our clients dominate their markets.
               </p>
             </div>
           </motion.div>
@@ -260,13 +322,16 @@ export default function ExperiencesSection() {
                 initial="rest"
                 whileHover="hover"
                 animate="rest"
-                onClick={() => navigate('/projects')}
+                onClick={() => navigate('/projects/valence')}
               >
                 <motion.img 
-                  src="/case-study-portrait.png" 
-                  alt="Case Study Featured Client" 
+                  src="/portfolio-screenshots/valence.png" 
+                  alt="Valence Architecture Case Study" 
                   className="exp-case-img"
-                  variants={caseStudyZoomVariants}
+                  variants={{
+                    rest: { scale: 1 },
+                    hover: { scale: 1.05, transition: { duration: 0.55, ease: [0.25, 1, 0.5, 1] } }
+                  }}
                 />
                 <div className="exp-case-overlay" />
 
@@ -274,7 +339,7 @@ export default function ExperiencesSection() {
                 <div className="exp-case-header">
                   <div>
                     <span className="exp-case-tag">Case study</span>
-                    <span className="exp-case-subtitle">2026 Redesign, Frontend Optimization.</span>
+                    <span className="exp-case-subtitle">Valence Spatial Studio — Monolithic Digital Archive.</span>
                   </div>
                   <span className="exp-case-plus">+</span>
                 </div>
@@ -286,7 +351,7 @@ export default function ExperiencesSection() {
 
                 {/* Bottom Footer Strip */}
                 <div className="exp-case-footer">
-                  <span className="exp-case-desc">From branding to web development and marketing.</span>
+                  <span className="exp-case-desc">From branding to WebGL architecture and full-stack deployment.</span>
                 </div>
               </motion.div>
             </motion.div>
@@ -307,10 +372,12 @@ export default function ExperiencesSection() {
 
                 <div className="exp-sub-testimonial-footer">
                   <span className="exp-stars">★★★★★</span>
-                  <p className="exp-sub-quote">"Thanks to the strategy, we've seen a steady 40% increase in leads."</p>
+                  <p className="exp-sub-quote">"Thanks to QuolyTech's strategy, we've seen a steady 40% increase in inbound qualified leads."</p>
                   <div className="exp-sub-author">
-                    <img src="/avatar-1.png" alt="Project Lead" />
-                    <span>Project Lead</span>
+                    <span className="exp-sub-author-badge">
+                      <ShieldCheck size={14} color="#10b981" />
+                    </span>
+                    <span>Verified Project Lead</span>
                   </div>
                 </div>
               </motion.div>
@@ -330,7 +397,7 @@ export default function ExperiencesSection() {
                         strokeWidth="8" 
                         fill="none" 
                         strokeDasharray="264" 
-                        strokeDashoffset="0"
+                        strokeDashoffset="0" 
                         strokeLinecap="round" 
                       />
                     </svg>
@@ -338,7 +405,7 @@ export default function ExperiencesSection() {
                   </div>
                   <h4 className="exp-gauge-title">Pagespeed score</h4>
                   <p className="exp-gauge-desc">
-                    We prioritize performance without sacrificing visual appeal or functionality.
+                    We prioritize lightning performance without sacrificing visual aesthetic or functional complexity.
                   </p>
                 </motion.div>
 

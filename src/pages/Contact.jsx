@@ -74,7 +74,7 @@ export default function Contact() {
     <div className="contact-page-outer">
       <SEOHead
         title="Contact QuolyTech | Start a Digital Project"
-        description="Contact QuolyTech in Tiranë, Albania to discuss your web development, mobile app, AI agent, custom software, or digital growth project."
+        description="Contact QuolyTech in Tiranë, Albania about your AI agent, startup, SaaS, web or mobile app, UI/UX design or social media marketing project."
         canonicalPath="/contact/"
         jsonLd={breadcrumbJsonLd}
       />

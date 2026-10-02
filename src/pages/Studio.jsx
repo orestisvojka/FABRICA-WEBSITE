@@ -64,10 +64,12 @@ export default function Studio() {
   };
 
   const capabilitiesList = [
-    { id: '001', name: 'Web Development & Applications', nom: 'React, Next.js, HTML/CSS, JS, PHP, WordPress', category: 'Web' },
-    { id: '002', name: 'AI Agent Development', nom: 'Support Agents, Lead Qualifiers, Internal Tools', category: 'AI' },
-    { id: '003', name: 'Mobile App Development', nom: 'iOS & Android Cross-Platform Applications', category: 'Mobile' },
-    { id: '004', name: 'Custom Software & Automation', nom: 'Admin Dashboards, APIs, Business Automation', category: 'Software' }
+    { id: '001', name: 'AI Systems & AI Agents', nom: 'Support Agents, Lead Qualifiers, Process Automation', category: 'AI' },
+    { id: '002', name: 'Startup & SaaS Development', nom: 'MVPs, Technical Architecture, Cloud SaaS Platforms, Launch', category: 'Product' },
+    { id: '003', name: 'Web & Mobile Apps', nom: 'React, Next.js, React Native, iOS & Android', category: 'Apps' },
+    { id: '004', name: 'UI/UX Design & Branding', nom: 'Interfaces, Prototypes, Design Systems, Brand Identity', category: 'Design' },
+    { id: '005', name: 'Systems Management', nom: 'Administration, Optimization, Maintenance', category: 'Infrastructure' },
+    { id: '006', name: 'Social Media Marketing', nom: 'Strategy, Content, Digital Campaigns', category: 'Marketing' }
   ];
 
   const organizationJsonLd = {
@@ -76,7 +78,7 @@ export default function Studio() {
     "name": "QuolyTech",
     "url": "https://quolytech.com/about/",
     "logo": "https://quolytech.com/quolytech-logo.jpg",
-    "description": "QuolyTech is a digital technology studio based in Tiranë, Albania. We build websites, mobile applications, AI agents, custom software and digital solutions for businesses.",
+    "description": "QuolyTech is a technology and design agency based in Tiranë, Albania. We help businesses grow with AI systems and agents, startup and SaaS development, web and mobile apps, UI/UX design, systems management and social media marketing.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Tiranë",
@@ -106,8 +108,8 @@ export default function Studio() {
   return (
     <div className="studio-page-outer">
       <SEOHead
-        title="About QuolyTech | Digital Technology Studio in Albania"
-        description="QuolyTech is a digital technology studio based in Tiranë, Albania. We build websites, mobile applications, AI agents, custom software and digital solutions."
+        title="About QuolyTech | Technology & Design Agency in Albania"
+        description="QuolyTech is a technology & design agency in Tiranë, Albania: AI agents, startup & SaaS development, web & mobile apps, UI/UX design and social media marketing."
         canonicalPath="/about/"
         jsonLd={[organizationJsonLd, breadcrumbJsonLd]}
       />
@@ -135,13 +137,13 @@ export default function Studio() {
               </div>
 
               <p className="studio-hero-paragraph">
-                QuolyTech is a digital technology studio based in Tiranë, Albania. We build websites, mobile applications, AI agents, custom software and digital solutions for businesses that want to improve their digital presence, automate operations and build better products.
+                QuolyTech is a technology and design agency based in Tiranë, Albania. We help businesses grow through modern technology, smart innovation and premium design: AI systems and agents, startup and SaaS development, web and mobile apps, UI/UX design, systems management and social media marketing. We turn ideas into products.
               </p>
 
               <div className="studio-hero-sub-row">
                 <span className="studio-sub-accent">What We Build:</span>
                 <span className="studio-sub-desc">
-                  Websites • Mobile Apps • AI Agents • Custom Software • Business Automation • SEO & Growth
+                  AI Agents • Startups & SaaS • Web & Mobile Apps • UI/UX Design • Systems Management • Social Media Marketing
                 </span>
               </div>
             </motion.div>

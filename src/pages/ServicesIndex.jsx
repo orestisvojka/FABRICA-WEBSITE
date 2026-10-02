@@ -43,8 +43,8 @@ export default function ServicesIndex() {
   return (
     <div>
       <SEOHead
-        title="Services | Web Development, AI Agents & Custom Software | QuolyTech"
-        description="Explore QuolyTech's services: Web Development, AI Agent Development, Mobile App Development, Custom Software, Business Automation, SEO, and Branding."
+        title="Services | AI, SaaS, Apps, UI/UX & Marketing | QuolyTech"
+        description="QuolyTech services: AI agents, startup & SaaS development, web & mobile apps, UI/UX design, systems management and social media marketing in Tiranë, Albania."
         canonicalPath="/services/"
         jsonLd={[jsonLd, breadcrumbJsonLd]}
       />
@@ -64,7 +64,7 @@ export default function ServicesIndex() {
               </h1>
             </div>
             <p style={{ fontSize: '16px', color: '#a1a1aa', maxWidth: '680px', lineHeight: '1.6', margin: 0 }}>
-              QuolyTech is a digital technology studio based in Tiranë, Albania. We build websites, mobile applications, AI agents, custom software and digital solutions that help businesses operate and grow online.
+              QuolyTech is a technology and design agency based in Tiranë, Albania. We help businesses grow with AI systems and agents, startup and SaaS development, web and mobile apps, UI/UX design, systems management and social media marketing.
             </p>
           </div>
 

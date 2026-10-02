@@ -1,28 +1,73 @@
 # QuolyTech
 
-QuolyTech is a digital technology studio based in Tiranë, Albania.
+> QuolyTech is a technology and design agency in Tiranë, Albania. It helps businesses grow with AI systems and agents, startup and SaaS development, web and mobile apps, UI/UX design, systems management and social media marketing, for clients in Albania and internationally.
 
-## Positioning
+## Services
+- [AI Agent Development](https://quolytech.com/services/ai-agents/): AI agents that answer customers 24/7, qualify leads and automate repetitive tasks, connected to your website and CRM. Built by QuolyTech in Tiranë, Albania.
+- [Startup Development & Launch](https://quolytech.com/services/startup-development/): Startup development for founders: MVP prototyping, technical architecture, launch strategy and marketing with one team. QuolyTech, Tiranë, Albania.
+- [SaaS Platform Development](https://quolytech.com/services/saas-development/): SaaS platform development from scratch: cloud-based, secure Software as a Service products ready for the global market. QuolyTech, Tiranë, Albania.
+- [Web Development](https://quolytech.com/services/web-development/): Custom websites and web applications for businesses, built with React, Next.js and WordPress. Fast, mobile-friendly and SEO-ready. QuolyTech, Tiranë, Albania.
+- [Mobile App Development](https://quolytech.com/services/mobile-app-development/): iOS and Android app development for businesses and startups with React Native, from UX design to App Store and Google Play launch. QuolyTech, Albania.
+- [UI/UX Design](https://quolytech.com/services/ui-ux-design/): UI/UX design for websites, web apps and mobile apps: wireframes, prototypes and interfaces that are attractive, intuitive and functional. QuolyTech, Albania.
+- [Systems Management](https://quolytech.com/services/systems-management/): IT systems management: administration, optimization and maintenance of servers, hosting, databases and applications. QuolyTech, Tiranë, Albania.
+- [Social Media Marketing](https://quolytech.com/services/social-media-marketing/): Social media marketing for businesses: strategy, content and digital campaigns that grow your online presence and engagement. QuolyTech, Tiranë, Albania.
+- [Custom Software](https://quolytech.com/services/software-development/): Custom business software: admin portals, dashboards and internal tools built around your workflows and integrations. QuolyTech, Tiranë, Albania.
+- [Business Automation](https://quolytech.com/services/business-automation/): Business process automation that connects your tools and removes manual work: lead routing, CRM sync, emails and documents. QuolyTech, Tiranë, Albania.
+- [SEO & Digital Growth](https://quolytech.com/services/seo/): Technical SEO, Core Web Vitals, structured data and site architecture that help your business get found on Google. QuolyTech, Tiranë, Albania.
+- [Branding & Digital Identity](https://quolytech.com/services/branding/): Brand identity design for businesses: logo, color palette, typography, brand guidelines and social media graphics. QuolyTech, Tiranë, Albania.
 
-QuolyTech builds websites, mobile applications, AI agents, custom software and digital solutions that help businesses operate, grow and improve their online presence.
+## Industries
+- [Healthcare & Clinics](https://quolytech.com/industries/healthcare/): Websites and appointment request systems for clinics, dental practices and healthcare providers, built by QuolyTech in Tiranë, Albania.
+- [E-Commerce & Retail](https://quolytech.com/industries/ecommerce/): Online store and e-commerce development for retailers: product catalogs, payment gateways, inventory sync and mobile shopping. QuolyTech, Albania.
+- [Real Estate & Property](https://quolytech.com/industries/real-estate/): Property listing websites for real estate agencies and developers, with property search, inquiry forms and AI lead qualification. QuolyTech, Albania.
+- [Hospitality & Tourism](https://quolytech.com/industries/hospitality/): Websites for hotels, restaurants and car rental companies with direct booking inquiries and 24/7 guest answers. QuolyTech, Tiranë, Albania.
+- [Professional Services](https://quolytech.com/industries/professional-services/): Corporate websites, client portals and lead generation for law firms, accounting practices and consultancies. QuolyTech, Tiranë, Albania.
+- [Automotive & Services](https://quolytech.com/industries/automotive/): Websites and lead management systems for car dealerships, service centers and rental companies. QuolyTech, Tiranë, Albania.
 
-## Core Services
+## Portfolio & Case Studies
+- [Shqiponja Energy](https://quolytech.com/projects/shqiponja/): High-conversion digital flagship and e-commerce showcase for Shqiponja, an all-natural Albanian energy beverage featuring zero sugar, natural caffeine, and crisp mountain botanicals. (Live: https://shqiponja-rho.vercel.app/)
+- [Valence Studio](https://quolytech.com/projects/valence/): Immersive editorial archive and interactive showcase for an international avant-garde spatial design studio operating across Berlin, Tokyo, and Paris. (Live: https://valence-khaki.vercel.app/)
+- [Omega Architecture](https://quolytech.com/projects/omega-architecture/): Architectural configurator and digital reservation platform for eco-responsible passive residences engineered with self-weathering corten steel and net-zero bioclimatic envelopes. (Live: https://mono-store-eta.vercel.app/#reserve)
+- [Paperfolio](https://quolytech.com/projects/paperfolio/): High-personality creative portfolio and interactive playground built with tactile card mechanics, neo-brutalist styling, vibrant micro-interactions, and bold typography. (Live: https://paperfolio-sigma.vercel.app/)
+- [Meridian Analytics](https://quolytech.com/projects/meridian-analytics/): Institutional-grade financial analytics suite featuring real-time portfolio attribution, Monte Carlo stress testing, volatility surface mapping, and enterprise risk metrics. (Live: https://fin-analytics-three.vercel.app/)
+- [Katachi Design](https://quolytech.com/projects/katachi/): Editorial e-commerce lookbook and spatial design showcase honoring Japanese minimalism and Belgian artisanal craftsmanship in furniture. (Live: https://katachi-flax-psi.vercel.app/)
+- [Vendôme Joaillerie](https://quolytech.com/projects/vendome/): Ultra-luxury digital flagship for Place Vendôme Paris haute joaillerie, showcasing rare diamonds, bespoke high jewelry collections, and private salon appointments. (Live: https://vendome-ashen.vercel.app/)
+- [Quolix AI](https://quolytech.com/projects/quolix/): High-velocity developer platform and deployment suite for building, testing, and shipping autonomous AI agents, LLM pipelines, and automated business workflows. (Live: https://quolix-woad.vercel.app/)
+- [Skooly EduCloud](https://quolytech.com/projects/skooly-edu/): Comprehensive multi-role academic ERP and school management platform serving super administrators, teachers, parents, and students with centralized grading and attendance. (Live: https://azure-moose-466393.hostingersite.com/)
+- [Pavlos Kolias](https://quolytech.com/projects/pavlos-kolias/): Scholarly digital portfolio and research directory for mathematician and statistician Pavlos Kolias, integrating Google Scholar indexing, publications, and university curriculum. (Live: https://pavloskolias.com/)
+- [EduManage Enterprise](https://quolytech.com/projects/edumanage/): Enterprise-grade educational infrastructure portal providing real-time student progress tracking, multi-campus governance, tuition accounting, and parent engagement channels. (Live: https://azure-moose-466393.hostingersite.com/)
+- [QuolyWheels](https://quolytech.com/projects/quolywheels/): Modern automotive portal featuring dual rental and purchase workflows, real-time fleet inventory, custom speedometer preloader, multi-language support, and test drive reservations. (Live: https://quolywheels.quolytech.com/)
+- [Hypocrates Dental](https://quolytech.com/projects/hypocrates-dental/): State-of-the-art medical website for a leading dental clinic in Tiranë, Albania, showcasing oral surgery, titanium implants, 3D orthodontics, before/after transformations, and online appointment booking. (Live: https://hypocrates-dental-web-demo.netlify.app/)
+- [FlowPilot Operations](https://quolytech.com/projects/flowpilot/): All-in-one SaaS powerhouse for field service operations, technician GPS dispatching, digital signature sign-offs, industrial asset maintenance logs, and automated Stripe invoicing. (Live: https://flowpilot-operations.netlify.app/)
 
-- Web Development (Custom Websites, Web Applications, React, Next.js, WordPress, PHP, MySQL)
-- AI Agent Development (24/7 Support Agents, Lead Qualification, Internal Knowledge Search, Workflow Automation)
-- Mobile App Development (iOS & Android Cross-Platform Applications, React Native)
-- Custom Software Development (Operational Dashboards, Admin Portals, REST APIs)
-- Business Automation (System Integrations, Webhooks, Data Pipelines)
-- SEO & Digital Growth (Technical SEO, Core Web Vitals, Schema.org Data)
-- Branding & Digital Identity (Logo Systems, Visual Guidelines, Typography Tokens)
+## Leadership & Team
+- [Oresti Vojka — CEO & Founder](https://quolytech.com/team/oresti-vojka/): Founder and Chief Executive Officer at QuolyTech, spearheading company vision, high-stakes client partnerships, and technological innovation.
+- [Kris Sipri — Lead Systems & Full-Stack Programmer](https://quolytech.com/team/kris-sipri/): Lead systems and backend engineer at QuolyTech, responsible for high-throughput cloud infrastructure, database modeling, secure API integrations, and robust server architectures.
+- [Daniel Kademi — Frontend & Creative Tech Programmer](https://quolytech.com/team/daniel-kademi/): Creative frontend developer and interface engineer at QuolyTech, specializing in reactive client-side architectures, WebGL shaders, fluid micro-interactions, and 60fps animations.
+- [Henri Bajramaj — Client Manager & Partnership Lead](https://quolytech.com/team/henri-bajramaj/): Client Manager and Strategic Relationship Lead at QuolyTech, orchestrating end-to-end client communication, onboarding roadmaps, delivery transparency, and post-launch success.
 
-## Location
+## Guides
+- [Blog](https://quolytech.com/blog/): guides on AI agents, business websites and technical SEO
+- [The "Junior Developer Extinction" Debate: Is AI Killing Entry-Level Tech Careers, or Creating Super-Juniors?](https://quolytech.com/blog/junior-developer-extinction-debate-ai/)
+- [The Myth of the $1 Billion One-Person Unicorn: Why Founders Are Re-Evaluating "Solo-Capitalism"](https://quolytech.com/blog/myth-of-the-one-person-billion-dollar-unicorn/)
+- [The Synthetic Data Paradox: Will AI Training on AI Output Trigger Irreversible "Model Collapse"?](https://quolytech.com/blog/synthetic-data-paradox-ai-model-collapse/)
+- [Open Weights vs. Closed Moats: Are AI Regulations Protecting Humanity or Securing Big Tech Monopolies?](https://quolytech.com/blog/open-weights-vs-closed-moats-eu-ai-act/)
+- [AI in the Digital Workplace: Productivity Copilot or Covert Digital Panopticon?](https://quolytech.com/blog/workplace-ai-productivity-copilot-or-digital-panopticon/)
+- [What Is an AI Agent for a Business?](https://quolytech.com/blog/what-is-an-ai-agent-for-business/)
+- [AI Agents vs Traditional Chatbots: What's the Difference?](https://quolytech.com/blog/ai-agents-vs-traditional-chatbots/)
+- [What Should a Modern Business Website Include?](https://quolytech.com/blog/what-should-a-modern-business-website-include/)
+- [Website vs Web Application: What's the Difference?](https://quolytech.com/blog/website-vs-web-application-whats-the-difference/)
+- [How Website Performance Affects User Experience and SEO](https://quolytech.com/blog/how-website-performance-affects-user-experience/)
+- [Technical SEO Checklist for Business Websites](https://quolytech.com/blog/technical-seo-for-business-websites/)
 
-Tiranë, Albania
+## Company
+- [About QuolyTech](https://quolytech.com/about/): who we are and how we work
 
-## Contact & Website
-
-- Website: https://quolytech.com/
-- Contact Page: https://quolytech.com/contact/
+## Contact
+- [Contact page](https://quolytech.com/contact/): start a project
 - Email: support@quolytech.com
 - Phone / WhatsApp: +355 68 405 5007
+- Location: Tiranë, Albania
+
+## Optional
+- [Full context](https://quolytech.com/llms-full.txt): every service and industry with FAQs

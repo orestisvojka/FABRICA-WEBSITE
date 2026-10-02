@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { industries } from '../data/services';
+import { industries, services } from '../data/services';
 import SEOHead from '../components/SEOHead';
 import ContactSection from '../components/ContactSection';
 import NotFound from './NotFound';
@@ -42,13 +42,23 @@ export default function IndustryDetail() {
     ]
   };
 
+  const faqJsonLd = industry.faqs && industry.faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": industry.faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+    }))
+  } : null;
+
   return (
     <div style={{ backgroundColor: '#000000', color: '#ffffff', minHeight: '100vh' }}>
       <SEOHead
         title={title}
-        description={industry.description}
+        description={industry.metaDescription || industry.description}
         canonicalPath={canonicalPath}
-        jsonLd={breadcrumbJsonLd}
+        jsonLd={[breadcrumbJsonLd, faqJsonLd].filter(Boolean)}
       />
 
       {/* Hero Section */}
@@ -113,15 +123,69 @@ export default function IndustryDetail() {
               Relevant Core Services Applied:
             </h3>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
-              {industry.relevantServices.map((serv, idx) => (
-                <span key={idx} style={{ backgroundColor: '#0d0d0d', border: '1px solid rgba(255,255,255,0.12)', color: '#ffffff', fontSize: '14px', fontWeight: '600', padding: '10px 20px', borderRadius: '12px' }}>
-                  {serv}
-                </span>
-              ))}
+              {industry.relevantServices.map((serv, idx) => {
+                const match = services.find((s) => s.title === serv);
+                const chipStyle = { backgroundColor: '#0d0d0d', border: '1px solid rgba(255,255,255,0.12)', color: '#ffffff', fontSize: '14px', fontWeight: '600', padding: '10px 20px', borderRadius: '12px', textDecoration: 'none' };
+                return match ? (
+                  <Link key={idx} to={`/services/${match.slug}/`} style={chipStyle}>
+                    {serv}
+                  </Link>
+                ) : (
+                  <span key={idx} style={chipStyle}>
+                    {serv}
+                  </span>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
+
+      {/* What It Does For You: Benefit Blocks */}
+      {industry.benefits && industry.benefits.length > 0 && (
+        <section style={{ padding: '80px 0', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+          <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
+            <h2 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '20px', letterSpacing: '-0.02em' }}>
+              What We Do for {industry.title}
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
+              {industry.benefits.map((benefit, idx) => (
+                <div key={idx} style={{ backgroundColor: '#0d0d0d', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', padding: '28px' }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#ffffff', margin: 0 }}>
+                    {benefit.title}
+                  </h3>
+                  <p style={{ fontSize: '15px', color: '#a1a1aa', lineHeight: '1.7', margin: '12px 0 0 0' }}>
+                    {benefit.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Industry FAQs Section */}
+      {industry.faqs && industry.faqs.length > 0 && (
+        <section style={{ padding: '80px 0', borderBottom: '1px solid rgba(255,255,255,0.08)', backgroundColor: '#050505' }}>
+          <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
+            <h2 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '36px', letterSpacing: '-0.02em', textAlign: 'center' }}>
+              Frequently Asked Questions
+            </h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '840px', margin: '0 auto' }}>
+              {industry.faqs.map((faq, idx) => (
+                <div key={idx} style={{ backgroundColor: '#0d0d0d', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', padding: '28px' }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#ffffff', margin: 0 }}>
+                    {faq.question}
+                  </h3>
+                  <p style={{ fontSize: '15px', color: '#a1a1aa', lineHeight: '1.7', margin: '12px 0 0 0' }}>
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <ContactSection />
     </div>

@@ -7,6 +7,8 @@ import Footer from './components/Footer';
 import QuolyTechPreloader from './components/QuolyTechPreloader';
 import AuthModal from './components/AuthModal';
 import ScrollToTop from './components/ScrollToTop';
+import QuolyBotGadget from './components/QuolyBotGadget';
+import CookieBanner from './components/CookieBanner';
 
 import Home from './pages/Home';
 import Studio from './pages/Studio';
@@ -25,7 +27,7 @@ import TeamDetail from './pages/TeamDetail';
 import NotFound from './pages/NotFound';
 import ServerError from './pages/ServerError';
 
-function AppContent() {
+export function AppContent() {
   const location = useLocation();
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
@@ -69,10 +71,14 @@ function AppContent() {
           <Route path="/privacy/" element={<Privacy />} />
           <Route path="/500" element={<ServerError />} />
           <Route path="/505" element={<ServerError />} />
+          <Route path="/404" element={<NotFound />} />
+          <Route path="/404/" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <ScrollToTop />
+      <QuolyBotGadget />
+      <CookieBanner />
       <Footer />
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
     </div>

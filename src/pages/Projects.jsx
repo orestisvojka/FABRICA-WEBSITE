@@ -5,79 +5,7 @@ import { projects } from '../data/projects';
 import { Search, ChevronDown, X } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import ContactSection from '../components/ContactSection';
-
-const getProjectLogo = (slug, title) => {
-  switch (slug) {
-    case 'boltshift':
-      return (
-        <div className="pm-logo-lockup">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <circle cx="12" cy="12" r="11" fill="currentColor" fillOpacity="0.2"/>
-            <path d="M13 2L4 14H11L9 22L20 10H12L13 2Z" fill="#FFFFFF"/>
-          </svg>
-          <span>Boltshift</span>
-        </div>
-      );
-    case 'ephemeral':
-      return (
-        <div className="pm-logo-lockup">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-          </svg>
-          <span>Ephemeral</span>
-        </div>
-      );
-    case 'powersurge':
-      return (
-        <div className="pm-logo-lockup">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <rect x="6" y="4" width="12" height="16" rx="2" stroke="#FFFFFF" strokeWidth="2" fill="none"/>
-            <rect x="9" y="1" width="6" height="3" rx="1" fill="#FFFFFF"/>
-            <rect x="9" y="8" width="6" height="8" rx="1" fill="#FFFFFF"/>
-          </svg>
-          <span>Powersurge</span>
-        </div>
-      );
-    case 'mastermail':
-      return (
-        <div className="pm-logo-lockup">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L17 7L12 12L7 7L12 2Z" fill="#FFFFFF"/>
-            <path d="M12 12L17 17L12 22L7 17L12 12Z" fill="#FFFFFF"/>
-            <path d="M2 12L7 7L12 12L7 17L2 12Z" fill="#FFFFFF"/>
-            <path d="M22 12L17 7L12 12L17 17L22 12Z" fill="#FFFFFF"/>
-          </svg>
-          <span>Mastermail</span>
-        </div>
-      );
-    case 'warpspeed':
-      return (
-        <div className="pm-logo-lockup">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5">
-            <path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.356-8-5.096 0-5.096 8 0 8 5.223 0 7.261-8 12.356-8z"/>
-          </svg>
-          <span>Warpspeed</span>
-        </div>
-      );
-    case 'cloudwatch':
-      return (
-        <div className="pm-logo-lockup">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-            <circle cx="9" cy="12" r="6" fill="#FFFFFF" fillOpacity="0.8"/>
-            <circle cx="15" cy="12" r="6" fill="#FFFFFF"/>
-          </svg>
-          <span>CloudWatch</span>
-        </div>
-      );
-    default:
-      return (
-        <div className="pm-logo-lockup">
-          <span>{title}</span>
-        </div>
-      );
-  }
-};
+import { getProjectLogo } from '../components/ProjectLogos';
 
 export default function Projects() {
   const navigate = useNavigate();
@@ -100,12 +28,16 @@ export default function Projects() {
   }, []);
 
   const filteredProjects = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
     return projects.filter((project) => {
       const matchesSearch =
-        project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.category.toLowerCase().includes(searchQuery.toLowerCase());
+        !q ||
+        project.title.toLowerCase().includes(q) ||
+        project.description.toLowerCase().includes(q) ||
+        project.client.toLowerCase().includes(q) ||
+        project.category.toLowerCase().includes(q) ||
+        (project.industry && project.industry.toLowerCase().includes(q)) ||
+        (project.tagline && project.tagline.toLowerCase().includes(q));
 
       const matchesCategory = selectedCategory === 'All' || project.category === selectedCategory;
 
@@ -118,7 +50,7 @@ export default function Projects() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
         delayChildren: 0.05
       }
     }
@@ -130,7 +62,7 @@ export default function Projects() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.7,
+        duration: 0.65,
         ease: [0.25, 1, 0.5, 1]
       }
     }
@@ -139,8 +71,8 @@ export default function Projects() {
   return (
     <div className="projects-page-outer">
       <SEOHead
-        title="Projects & Case Studies | QuolyTech"
-        description="Explore web application prototypes, interface designs, developer tools, and brand identity projects created by QuolyTech."
+        title="Projects & Portfolio | QuolyTech"
+        description="Explore 14 live web applications, e-commerce flagships, developer platforms, and digital systems engineered by QuolyTech."
         canonicalPath="/projects/"
       />
       {/* Header Section */}
@@ -160,9 +92,9 @@ export default function Projects() {
 
             {/* Right Subtext & Stamp */}
             <motion.div variants={itemVariants} className="projects-text-box">
-              <span className="projects-year-stamp">(2016-25©)</span>
+              <span className="projects-year-stamp">(2024-26©)</span>
               <p className="projects-subtext">
-                We've helped businesses across various industries achieve their goals. Here are some of our recent projects.
+                We've helped businesses across various industries engineer world-class digital products. Here are 14 of our active production projects.
               </p>
 
               {/* Filter & Search Controls */}
@@ -171,19 +103,19 @@ export default function Projects() {
                   <Search size={16} className="projects-search-icon" />
                   <input
                     type="text"
-                    placeholder="Search..."
+                    placeholder="Search projects..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="projects-search-input"
                   />
                   {searchQuery && (
-                    <button onClick={() => setSearchQuery('')} className="projects-clear-btn">
+                    <button onClick={() => setSearchQuery('')} className="projects-clear-btn" aria-label="Clear search">
                       <X size={14} />
                     </button>
                   )}
                 </div>
 
-                {/* Custom Interactive Dropdown Card (Replacing Native Select) */}
+                {/* Custom Interactive Dropdown Card */}
                 <div className="custom-filter-dropdown-container" ref={dropdownRef}>
                   <button 
                     className="custom-filter-trigger-btn"
@@ -251,10 +183,25 @@ export default function Projects() {
                   onClick={() => navigate(`/projects/${project.slug}`)}
                   whileHover="hover"
                 >
-                  {/* Top Metadata Bar */}
+                  {/* Top Metadata Bar with direct Live Access Button */}
                   <div className="project-card-top-bar">
-                    <span className="project-card-title">{project.title}</span>
-                    <span className="project-card-year">/{project.year}</span>
+                    <div className="project-card-title-group">
+                      <span className="project-card-title">{project.title}</span>
+                      <span className="project-card-year">/{project.year}</span>
+                    </div>
+
+                    <a
+                      href={project.liveUrl || project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-card-live-btn"
+                      onClick={(e) => e.stopPropagation()}
+                      title={`Visit live site: ${project.title}`}
+                    >
+                      <span className="project-card-live-dot" />
+                      <span>Live Site</span>
+                      <span className="project-card-arrow">↗</span>
+                    </a>
                   </div>
 
                   {/* Photo Container with Centered White Logo Watermark */}
@@ -263,6 +210,12 @@ export default function Projects() {
                       src={project.heroImage}
                       alt={project.title}
                       className="project-card-bg-img"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        if (project.fallbackImage) {
+                          e.target.src = project.fallbackImage;
+                        }
+                      }}
                     />
 
                     {/* Dark gradient overlay */}
@@ -272,6 +225,14 @@ export default function Projects() {
                     <div className="pm-logo-overlay">
                       {getProjectLogo(project.slug, project.title)}
                     </div>
+                  </div>
+
+                  {/* Bottom Metadata Bar */}
+                  <div className="project-card-bottom-bar">
+                    <span className="project-card-category">{project.category}</span>
+                    <span className="project-card-view-case">
+                      Case Study &rarr;
+                    </span>
                   </div>
                 </motion.div>
               ))
